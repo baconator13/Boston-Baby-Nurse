@@ -2,6 +2,7 @@ package org.example.android.bostonbabynurse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,15 +14,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    protected ListView listApps;
+    protected String xmlData;
+    protected Button btnParse;
+
 
     private static String TAG = MainActivity.class.getSimpleName();
 
@@ -29,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected RelativeLayout mDrawerPane;
     protected ActionBarDrawerToggle mDrawerToggle;
     protected DrawerLayout mDrawerLayout;
-    //private int position;
+
     Context mContext;
 
     protected ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
@@ -39,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnParse = (Button) findViewById(R.id.btnParse);
+        listApps = (ListView) findViewById(R.id.listApps);
+
         mNavItems.add(new NavItem("Education", "Learning materials for new parents", R.drawable.ic_action_home));
         mNavItems.add(new NavItem("Schedule", "Request a baby nurse", R.drawable.ic_action_settings));
         mNavItems.add(new NavItem("Events", "Upcoming Boston Baby Nurse events", R.drawable.ic_action_about));
@@ -47,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 
-        // Populate the Navigtion Drawer with options
+        // Populate the navigation drawer with options
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
         mDrawerList = (ListView) findViewById(R.id.navList);
         DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
@@ -80,6 +96,30 @@ public class MainActivity extends AppCompatActivity {
                 selectItemFromDrawer(position);
             }
         });
+
+
+
+        // Parse button on click listener
+        btnParse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("PushedBTN", "Pushed button");
+                ParseArticles parse = new ParseArticles(xmlData);
+                boolean operationStatus = parse.process();
+                if (operationStatus) {
+                    ArrayList<Article> allArticles = parse.getArticles();
+
+                    ArrayAdapter<Article> adapter = new ArrayAdapter<Article>(MainActivity.this, R.layout.list_item, allArticles);
+                    listApps.setVisibility(listApps.VISIBLE);
+                    listApps.setAdapter(adapter);
+
+                } else {
+                    Log.d("MainActivity", "Error parsing file");
+                }
+            }
+        });
+
+        new DownloadData().execute("http://bostonbabynurse.com/feed/");
     }
 
     @Override
@@ -198,5 +238,65 @@ public class MainActivity extends AppCompatActivity {
 
         // Close the drawer
         mDrawerLayout.closeDrawer(mDrawerPane);
+    }
+
+    private class DownloadData extends AsyncTask<String, Void, String> {
+
+        String myXmlData;
+
+        protected String doInBackground(String...urls) {
+            try {
+                myXmlData = downloadXML(urls[0]);
+
+            } catch (IOException e) {
+                return "Unable to download XML file.";
+            }
+
+            return "";
+        }
+
+        protected void onPostExecute(String result) {
+            Log.d("onPostExecute", myXmlData);
+            xmlData = myXmlData;
+        }
+
+        private String downloadXML(String theUrl) throws IOException {
+            int BUFFER_SIZE = 2000;
+            InputStream is = null;
+
+            String xmlContents = "";
+
+            try {
+                URL url = new URL(theUrl);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                int response = conn.getResponseCode();
+                Log.d("DownloadXML", "The response returned is: " + response);
+                is = conn.getInputStream();
+
+                InputStreamReader isr = new InputStreamReader(is);
+                int charRead;
+                char[] inputBuffer = new char[BUFFER_SIZE];
+                try {
+                    while ((charRead = isr.read(inputBuffer)) > 0 ) {
+                        String readString = String.copyValueOf(inputBuffer, 0, charRead);
+                        xmlContents += readString;
+                        inputBuffer = new char[BUFFER_SIZE];
+                    }
+
+                    return xmlContents;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            } finally {
+                if (is != null)
+                    is.close();
+            }
+        }
     }
 }

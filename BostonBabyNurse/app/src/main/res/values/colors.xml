@@ -5,4 +5,12 @@
     <item name="grey" type="color">#555555</item>
     <item name="green" type="color">#4499CC00</item>
     <item name="darkgreen" type="color">#FF669900</item>
+
+    <color name="PrimaryBackgroundColor">@color/md_white_1000</color>
+    <color name="SecondaryBackgroundColor">@color/md_cyan_600</color>
+    <color name="ColorBackgroundAccent">@color/md_cyan_400</color>
+    <color name="BackgroundColor">@color/md_grey_600</color>
+    <color name="PrimaryTextColor">@color/md_cyan_800</color>
+    <color name="SecondaryTextColor">@color/md_grey_700</color>
+
 </resources>
