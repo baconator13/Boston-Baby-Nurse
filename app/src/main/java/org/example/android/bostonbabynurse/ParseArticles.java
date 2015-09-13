@@ -1,9 +1,5 @@
 package org.example.android.bostonbabynurse;
 
-/**
- * Created by alexanderarsenault on 8/25/15.
- */
-
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -24,21 +20,12 @@ public class ParseArticles extends MainActivity {
 
     public ArrayList<Article> getArticles() {
 
-
-
-
         for (Article app : articles ) {
-
-            //allArticles.add(app);
-
             Log.d("articles list", "**************");
             Log.d("articles list", app.getTitle());
             Log.d("articles list", app.getLink());
             Log.d("articles list", app.getDescription());
        }
-
-
-
 
         return articles;
     }
@@ -79,9 +66,15 @@ public class ParseArticles extends MainActivity {
                         } else if(tagName.equalsIgnoreCase("link")) {
                             Log.d("adding link: ", textValue);
                             currentRecord.setLink(textValue);
+                        } else if(tagName.equalsIgnoreCase("pubDate")) {
+                            Log.d("adding pub date: ", textValue);
+                            currentRecord.setPubDate(textValue);
                         } else if(tagName.equalsIgnoreCase("description")) {
                             Log.d("adding description: ", textValue);
                             currentRecord.setDescription(textValue);
+                        } else if(tagName.equalsIgnoreCase("content:encoded")) {
+                            Log.d("adding content: ", textValue);
+                            currentRecord.setContent(textValue);
                         }
 
                     }
@@ -94,7 +87,6 @@ public class ParseArticles extends MainActivity {
             e.printStackTrace();
             operationStatus = false;
         }
-
 
         return operationStatus;
     }

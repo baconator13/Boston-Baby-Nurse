@@ -29,7 +29,7 @@
         <activity android:name=".ScheduleActivity"/>
         <activity android:name=".EducationActivity"/>
         <activity android:name=".EventsActivity"/>
-        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".ForumActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

@@ -5,8 +5,10 @@ package org.example.android.bostonbabynurse;
 public class Article {
 
     private String title;
+    private String pubDate;
     private String link;
     private String description;
+    private String content;
 
     public String getTitle() {
         return title;
@@ -30,6 +32,22 @@ public class Article {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setPubDate(String date) {
+        this.pubDate = date;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String toString() {
