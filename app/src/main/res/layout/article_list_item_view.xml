@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/articleTitle"
+        android:layout_alignBaseline="@+id/articleIcon"
+        android:layout_toRightOf="@+id/articleIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="6dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/articleDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/articleTitle"
+        android:layout_alignLeft="@id/articleTitle"
+        android:paddingRight="6dp"
+        android:paddingLeft="10dp"
+     />
+
+
+
+    <ImageView
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/articleIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/bbn_logo" />
+
+</RelativeLayout>

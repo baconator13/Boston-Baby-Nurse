@@ -5,22 +5,41 @@ package org.example.android.bostonbabynurse;
  */
 
 import android.util.Log;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.StringReader;
 import java.util.ArrayList;
 
 
-public class ParseArticles {
+public class ParseArticles extends MainActivity {
     private String data;
     private ArrayList<Article> articles;
 
     public ParseArticles(String xmlData) {
         data = xmlData;
-        articles = new ArrayList<Article>();
+        articles = new ArrayList<>();
     }
 
     public ArrayList<Article> getArticles() {
+
+
+
+
+        for (Article app : articles ) {
+
+            //allArticles.add(app);
+
+            Log.d("articles list", "**************");
+            Log.d("articles list", app.getTitle());
+            Log.d("articles list", app.getLink());
+            Log.d("articles list", app.getDescription());
+       }
+
+
+
+
         return articles;
     }
 
@@ -55,9 +74,14 @@ public class ParseArticles {
                             inEntry = false;
                         }
                         if(tagName.equalsIgnoreCase("title")) {
+                            Log.d("adding title: ", textValue);
                             currentRecord.setTitle(textValue);
                         } else if(tagName.equalsIgnoreCase("link")) {
+                            Log.d("adding link: ", textValue);
                             currentRecord.setLink(textValue);
+                        } else if(tagName.equalsIgnoreCase("description")) {
+                            Log.d("adding description: ", textValue);
+                            currentRecord.setDescription(textValue);
                         }
 
                     }
@@ -71,11 +95,6 @@ public class ParseArticles {
             operationStatus = false;
         }
 
-        for(Article app : articles ) {
-            Log.d("LOG", "**************");
-            Log.d("LOG", app.getTitle());
-            Log.d("LOG", app.getLink());
-        }
 
         return operationStatus;
     }

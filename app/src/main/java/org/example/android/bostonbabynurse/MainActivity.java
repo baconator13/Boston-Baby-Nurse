@@ -30,8 +30,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected ListView listApps;
+
     protected String xmlData;
+
+    protected ListView listViewArticles;
+    public ArrayList<Article> allArticles = new ArrayList<>();
 
 
     private static String TAG = MainActivity.class.getSimpleName();
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     Context mContext;
 
-    protected ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
+    protected ArrayList<NavItem> mNavItems = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        listApps = (ListView) findViewById(R.id.listApps);
+        listViewArticles = (ListView) findViewById(R.id.articleList);
 
         mNavItems.add(new NavItem("Education", "Learning materials for new parents", R.drawable.ic_action_home));
         mNavItems.add(new NavItem("Schedule", "Request a baby nurse", R.drawable.ic_action_settings));
@@ -103,6 +107,23 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         new DownloadData().execute("http://bostonbabynurse.com/feed/");
+
+        Log.d(" downloaddata ", "executed");
+
+        for (Article art : allArticles) {
+            Log.d("allArticles:  ", art.toString());
+        }
+
+
+
+        ArticleAdapter articleAdapter = new ArticleAdapter(this, allArticles);
+
+
+
+
+        listViewArticles.setVisibility(listViewArticles.VISIBLE);
+        listViewArticles.setAdapter(articleAdapter);
+
     }
 
     @Override
@@ -188,6 +209,74 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
+
+    public class ArticleAdapter extends ArrayAdapter<Article> {
+
+
+        public ArticleAdapter(Context context, ArrayList<Article> articles) {
+            super(context, 0, articles);
+
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view;
+
+            // Get the data item for this position
+            // Article article = getItem(position);
+
+
+            // Check if an existing view is being reused, otherwise inflate the view
+            if (convertView == null) {
+                LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.article_list_item_view, null);
+            } else {
+                view = convertView;
+            }
+
+
+            TextView title = (TextView) view.findViewById(R.id.articleTitle);
+            TextView description = (TextView) view.findViewById(R.id.articleDescription);
+            //ImageView icon = (ImageView) view.findViewById(R.id.articleIcon);
+
+            title.setText(allArticles.get(position).getTitle());
+            description.setText(allArticles.get(position).getDescription());
+            //icon.setImageResource(allArticles.get(position).ge);
+
+            return view;
+
+        }
+    }
+
+
+//            // Lookup view for data population
+//            TextView articleTitle = (TextView) convertView.findViewById(R.id.articleTitle);
+//            TextView articleDescription = (TextView) convertView.findViewById(R.id.articleDescription);
+//
+//
+//            // Populate the data into the template view using the data object
+//            articleTitle.setText(article.getTitle());
+//            articleDescription.setText(article.getDescription());
+//
+//
+//            // Return the completed view to render on screen
+//            return convertView;
+//        }
+//    }
+//
+
+
+
+
+
+
+
+
+
+
+
     /*
 * Called when a particular item from the navigation drawer
 * is selected.
@@ -242,33 +331,82 @@ public class MainActivity extends AppCompatActivity {
             Log.d("onPostExecute", myXmlData);
             xmlData = myXmlData;
 
-
-
-
-
-
                 Log.d("PushedBTN", "Pushed button");
                 ParseArticles parse = new ParseArticles(xmlData);
                 boolean operationStatus = parse.process();
                 if (operationStatus) {
-                    ArrayList<Article> allArticles = parse.getArticles();
+                    allArticles = parse.getArticles();
 
-                    ArrayAdapter<Article> adapter = new ArrayAdapter<Article>(MainActivity.this, R.layout.list_item, allArticles);
-                    listApps.setVisibility(listApps.VISIBLE);
-                    listApps.setAdapter(adapter);
+
+
+                    ArticleAdapter articleAdapter = new ArticleAdapter(MainActivity.this, allArticles);
+                    listViewArticles.setVisibility(listViewArticles.VISIBLE);
+                    listViewArticles.setAdapter(articleAdapter);
+
+
+//                    for (Article app : tempArticles ) {
+//
+//                        //allArticles.add(app);
+//
+//                        Log.d("tempArticles list", "**************");
+//                        Log.d("tempArticles list", app.getTitle());
+//                        Log.d("tempArticles list", app.getLink());
+//                        Log.d("tempArticles list", app.getDescription());
+//                    }
+
+
+
+
+                    //articleAdapter = new ArticleAdapter(getBaseContext(), articleArrayList);
+                    //mArticleAdapter = articleAdapter;
+
+
+//
+//                    for (Article app: articleArrayList) {
+//
+//                        articleArrayList.add(app);
+//
+//
+//                    //ArrayAdapter<Article> articleAdapter = new ArrayAdapter<Article>(MainActivity.this, R.layout.list_item, allArticles);
+//
+////                    ArticleAdapter articleAdapter = new ArticleAdapter(getBaseContext(), allArticles);
+//
+//
+////                    for(Article art : allArticles) {
+////
+////                        articleAdapter.add(art);
+////
+////
+//                    }
+
+
+
+
+                    Log.d("articleAdapter", "created");
+
+
+
 
                 } else {
                     Log.d("MainActivity", "Error parsing file");
                 }
 
-
-
-
-
-
-
-
         }
+
+//        private void populateArticleList() {
+//            // Construct the data source
+//            ArrayList<Article> arrayOfUsers = Article.getArticles();
+//            // Create the adapter to convert the array to views
+//            CustomUsersAdapter adapter = new CustomUsersAdapter(this, arrayOfUsers);
+//            // Attach the adapter to a ListView
+//            ListView listViewArticles = (ListView) findViewById(R.id.articleList);
+//            listViewArticles.setAdapter(articleAdapter);
+//        }
+
+
+
+
+
 
         private String downloadXML(String theUrl) throws IOException {
             int BUFFER_SIZE = 2000;

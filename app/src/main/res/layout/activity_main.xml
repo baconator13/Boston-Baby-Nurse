@@ -23,15 +23,13 @@
         android:gravity="center"
         android:layout_marginTop="10dp"/>
 
-
         <ListView
-            android:id="@+id/listApps"
+            android:id="@+id/articleList"
             android:layout_marginTop="70dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignBottom="@id/blogTitle"
-            android:visibility="invisible" >
+            android:layout_alignBottom="@id/blogTitle">
         </ListView>
 
 
