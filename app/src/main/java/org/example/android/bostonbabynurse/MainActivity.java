@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     protected ListView listApps;
     protected String xmlData;
-    protected Button btnParse;
 
 
     private static String TAG = MainActivity.class.getSimpleName();
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnParse = (Button) findViewById(R.id.btnParse);
+
         listApps = (ListView) findViewById(R.id.listApps);
 
         mNavItems.add(new NavItem("Education", "Learning materials for new parents", R.drawable.ic_action_home));
@@ -99,25 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        // Parse button on click listener
-        btnParse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("PushedBTN", "Pushed button");
-                ParseArticles parse = new ParseArticles(xmlData);
-                boolean operationStatus = parse.process();
-                if (operationStatus) {
-                    ArrayList<Article> allArticles = parse.getArticles();
-
-                    ArrayAdapter<Article> adapter = new ArrayAdapter<Article>(MainActivity.this, R.layout.list_item, allArticles);
-                    listApps.setVisibility(listApps.VISIBLE);
-                    listApps.setAdapter(adapter);
-
-                } else {
-                    Log.d("MainActivity", "Error parsing file");
-                }
-            }
-        });
+//        // Parse button on click listener
+//        btnParse.setOnClickListener(new View.OnClickListener() {
+//
+//        });
 
         new DownloadData().execute("http://bostonbabynurse.com/feed/");
     }
@@ -258,6 +241,33 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             Log.d("onPostExecute", myXmlData);
             xmlData = myXmlData;
+
+
+
+
+
+
+                Log.d("PushedBTN", "Pushed button");
+                ParseArticles parse = new ParseArticles(xmlData);
+                boolean operationStatus = parse.process();
+                if (operationStatus) {
+                    ArrayList<Article> allArticles = parse.getArticles();
+
+                    ArrayAdapter<Article> adapter = new ArrayAdapter<Article>(MainActivity.this, R.layout.list_item, allArticles);
+                    listApps.setVisibility(listApps.VISIBLE);
+                    listApps.setAdapter(adapter);
+
+                } else {
+                    Log.d("MainActivity", "Error parsing file");
+                }
+
+
+
+
+
+
+
+
         }
 
         private String downloadXML(String theUrl) throws IOException {

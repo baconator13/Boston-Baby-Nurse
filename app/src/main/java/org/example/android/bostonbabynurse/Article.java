@@ -1,8 +1,7 @@
 package org.example.android.bostonbabynurse;
 
-/**
- * Created by alexanderarsenault on 8/25/15.
- */
+
+
 public class Article {
 
     private String title;
@@ -25,7 +24,7 @@ public class Article {
     }
 
     public String toString() {
-        return "Title: " + this.title + "\n" +
+        return this.title + "\n" +
                 "Link: " + this.link + "\n";
     }
 

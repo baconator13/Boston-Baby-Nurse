@@ -13,30 +13,24 @@
         android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/blogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Boston Baby Nurse"
+        android:text="Boston Baby Nurse Blog"
         android:textColor="@color/PrimaryTextColor"
         android:textSize="32sp"
         android:gravity="center"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="10dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Parse"
-            android:id="@+id/btnParse"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
 
         <ListView
             android:id="@+id/listApps"
+            android:layout_marginTop="70dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_below="@id/btnParse"
-            android:layout_alignParentRight="@+id/btnParse"
+            android:layout_alignBottom="@id/blogTitle"
             android:visibility="invisible" >
         </ListView>
 
