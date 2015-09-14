@@ -1,69 +1,37 @@
 package org.example.android.bostonbabynurse;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-public class ArticleContentActivity extends MainActivity {
+public class ArticleContentActivity extends AppCompatActivity {
 
     private TextView contentTitle;
     private TextView contentText;
+    private Toolbar toolbar;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_content_view);
-        contentText = (TextView) findViewById(R.id.contentText);
-        contentTitle = (TextView) findViewById(R.id.contentTitle);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
-        mDrawerList = (ListView) findViewById(R.id.navList);
-        MainActivity.DrawerListAdapter adapter = new MainActivity.DrawerListAdapter(this, mNavItems);
-        mDrawerList.setAdapter(adapter);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R  .string.drawer_close) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-
-                invalidateOptionsMenu();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-
-                invalidateOptionsMenu();
-            }
-        };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        // Drawer Item click listeners
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItemFromDrawer(position);
-            }
-        });
+        activateToolbarWithHomeEnabled();
 
         Bundle b = getIntent().getExtras();
         String artTitle = b.getString("title");
         String artContent = b.getString("content");
+
+        setTitle(artTitle);
+        contentText = (TextView) findViewById(R.id.contentText);
+
         contentText.setText(artContent);
-        contentTitle.setText(artTitle);
         contentText.setMovementMethod(new ScrollingMovementMethod());
 
     }
@@ -80,11 +48,40 @@ public class ArticleContentActivity extends MainActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(myIntent, 0);
             return true;
         }
-
-        // Handle your other action bar items...
         return super.onOptionsItemSelected(item);
+
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    protected Toolbar activateToolbar() {
+        if (toolbar == null) {
+            toolbar = (Toolbar) findViewById(R.id.app_bar);
+            if (toolbar != null) {
+                setSupportActionBar(toolbar);
+            }
+        }
+        return toolbar;
+    }
+
+    protected Toolbar activateToolbarWithHomeEnabled() {
+        activateToolbar();
+        if (toolbar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        return toolbar;
+
+    }
+
 }

@@ -12,7 +12,8 @@
         <activity
             android:name="org.example.android.bostonbabynurse.SplashScreen"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -26,11 +27,26 @@
             android:label="@string/app_name">
         </activity>
 
-        <activity android:name=".ScheduleActivity"/>
-        <activity android:name=".EducationActivity"/>
-        <activity android:name=".EventsActivity"/>
-        <activity android:name=".ForumActivity"/>
-        <activity android:name=".ArticleContentActivity"/>
+        <activity android:name=".ScheduleActivity"
+            android:label="Schedule"/>
+        <activity android:name=".EducationActivity"
+            android:label="Education"/>
+        <activity android:name=".EventsActivity"
+            android:label="Events"/>
+        <activity android:name=".ForumActivity"
+            android:label="Forum"/>
+
+
+        <!--Article Content Activity-->
+        <activity
+            android:name=".ArticleContentActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="org.example.android.bostonbabynurse.MainActivity" />
+        </activity>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

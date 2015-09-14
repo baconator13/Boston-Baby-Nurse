@@ -17,20 +17,20 @@
         android:id="@+id/drawerPane"
         android:layout_gravity="start">
 
-        <!-- Profile Box -->
         <RelativeLayout
             android:id="@+id/profileBox"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/material_blue_grey_800"
+            android:layout_height="80dp"
+            android:background="@color/md_white_1000"
             android:padding="8dp" >
 
             <ImageView
                 android:id="@+id/avatar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:paddingTop="20dp"
                 android:src="@drawable/bbn_logo"
-                android:layout_marginTop="15dp" />
+                android:layout_marginTop="5dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -38,26 +38,19 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@+id/avatar"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:background="@color/md_white_1000">
 
                 <TextView
                     android:id="@+id/mainTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User Name"
-                    android:textColor="#fff"
-                    android:textSize="16sp"
+                    android:paddingTop="15dp"
+                    android:text="Boston Baby Nurse"
+                    android:textColor="@color/PrimaryTextColor"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="4dp"
-                    android:text="View Profile"
-                    android:textColor="#fff"
-                    android:textSize="12sp" />
             </LinearLayout>
         </RelativeLayout>
 
