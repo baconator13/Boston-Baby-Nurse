@@ -25,6 +25,8 @@ public class ParseArticles extends MainActivity {
             Log.d("articles list", app.getTitle());
             Log.d("articles list", app.getLink());
             Log.d("articles list", app.getDescription());
+            Log.d("articles list", app.getContent());
+
        }
 
         return articles;
@@ -47,6 +49,9 @@ public class ParseArticles extends MainActivity {
             int eventType = xpp.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 String tagName = xpp.getName();
+
+
+
                 if(eventType == XmlPullParser.START_TAG) {
                     if(tagName.equalsIgnoreCase("item")) {
                         inEntry = true;
@@ -70,10 +75,19 @@ public class ParseArticles extends MainActivity {
                             Log.d("adding pub date: ", textValue);
                             currentRecord.setPubDate(textValue);
                         } else if(tagName.equalsIgnoreCase("description")) {
+                            String tempText = android.text.Html.fromHtml(textValue).toString();
+                            textValue = tempText;
                             Log.d("adding description: ", textValue);
                             currentRecord.setDescription(textValue);
-                        } else if(tagName.equalsIgnoreCase("content:encoded")) {
+                        }
+
+                        else if(tagName.equalsIgnoreCase("encoded")) {
+                            String tempText = android.text.Html.fromHtml(textValue).toString();
+                            textValue = tempText;
+
+
                             Log.d("adding content: ", textValue);
+
                             currentRecord.setContent(textValue);
                         }
 
@@ -82,6 +96,8 @@ public class ParseArticles extends MainActivity {
                 }
 
                 eventType = xpp.next();
+                Log.d("xpp.next", Integer.toString(eventType));
+
             }
         } catch(Exception e) {
             e.printStackTrace();

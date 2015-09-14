@@ -6,17 +6,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-/**
- * Created by alexanderarsenault on 9/13/15.
- */
+
 public class ArticleContentActivity extends MainActivity {
 
-    private TextView contentText;
+//    private TextView contentTitle;
+
+
+
 
 
 
@@ -24,7 +25,12 @@ public class ArticleContentActivity extends MainActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_content_view);
-        contentText = (TextView) findViewById(R.id.contentText);
+//        contentText = (TextView) findViewById(R.id.contentText);
+//        contentTitle = (TextView) findViewById(R.id.contentTitle);
+
+        WebView wv=(WebView)findViewById(R.id.contentWebView);
+
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
@@ -33,7 +39,7 @@ public class ArticleContentActivity extends MainActivity {
         mDrawerList.setAdapter(adapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R  .string.drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -59,9 +65,14 @@ public class ArticleContentActivity extends MainActivity {
             }
         });
 
-        Bundle b = getIntent().getExtras();
-        String artTitle = b.getString("title");
-        contentText.setText(artTitle);
+//        Bundle b = getIntent().getExtras();
+//        String artTitle = b.getString("title");
+//        String artContent = b.getString("content");
+//        contentText.setText(artTitle);
+//        contentTitle.setText(artContent);
+
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.loadUrl(this.getIntent().getDataString());
 
     }
 

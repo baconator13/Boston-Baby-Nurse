@@ -2,6 +2,7 @@ package org.example.android.bostonbabynurse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    protected String xmlData;
+    private String xmlData;
 
     protected ListView listViewArticles;
     public ArrayList<Article> allArticles = new ArrayList<>();
@@ -240,11 +241,11 @@ public class MainActivity extends AppCompatActivity {
             //ImageView icon = (ImageView) view.findViewById(R.id.articleIcon);
 
 
-            String artDescription = android.text.Html.fromHtml(allArticles.get(position).getDescription()).toString();
+            //String artDescription = android.text.Html.fromHtml(allArticles.get(position).getDescription()).toString();
 
             title.setText(allArticles.get(position).getTitle());
             pubDate.setText((allArticles.get(position).getPubDate()).substring(0, 16));
-            description.setText(artDescription.substring(0, 100) + "...");
+            description.setText((allArticles.get(position).getDescription()).substring(0, 100) + "...");
             //icon.setImageResource(allArticles.get(position).ge);
 
             return view;
@@ -295,10 +296,12 @@ public class MainActivity extends AppCompatActivity {
         listViewArticles.setItemChecked(position, true);
 
 
+        intent.setData(Uri.parse(allArticles.get(position).getLink()));
 
-        Bundle b = new Bundle();
-        b.putString("title", allArticles.get(position).getTitle()); //Your id
-        intent.putExtras(b); //Put your id to your next Intent
+//        Bundle b = new Bundle();
+//        b.putString("title", allArticles.get(position).getTitle());
+//        b.putString("content", allArticles.get(position).getContent());
+//        intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
         finish();
 
@@ -330,8 +333,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            Log.d("onPostExecute", myXmlData);
+            longInfo(myXmlData);
             xmlData = myXmlData;
+
 
                 Log.d("PushedBTN", "Pushed button");
                 ParseArticles parse = new ParseArticles(xmlData);
@@ -349,8 +353,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private String downloadXML(String theUrl) throws IOException {
+
+
             int BUFFER_SIZE = 2000;
             InputStream is = null;
+
 
             String xmlContents = "";
 
@@ -369,11 +376,14 @@ public class MainActivity extends AppCompatActivity {
                 int charRead;
                 char[] inputBuffer = new char[BUFFER_SIZE];
                 try {
+
                     while ((charRead = isr.read(inputBuffer)) > 0 ) {
                         String readString = String.copyValueOf(inputBuffer, 0, charRead);
                         xmlContents += readString;
                         inputBuffer = new char[BUFFER_SIZE];
                     }
+
+
 
                     return xmlContents;
 
@@ -386,5 +396,13 @@ public class MainActivity extends AppCompatActivity {
                     is.close();
             }
         }
+    }
+
+    public static void longInfo(String str) {
+        if(str.length() > 4000) {
+            Log.d("onPostExecute: ", str.substring(0, 4000));
+            longInfo(str.substring(4000));
+        } else
+            Log.d("onPostExecute: ", str);
     }
 }
