@@ -2,7 +2,6 @@ package org.example.android.bostonbabynurse;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -292,16 +291,12 @@ public class MainActivity extends AppCompatActivity {
 
     protected void selectArticle(int position) {
         Intent intent = new Intent(MainActivity.this, ArticleContentActivity.class);
-
         listViewArticles.setItemChecked(position, true);
 
-
-        intent.setData(Uri.parse(allArticles.get(position).getLink()));
-
-//        Bundle b = new Bundle();
-//        b.putString("title", allArticles.get(position).getTitle());
-//        b.putString("content", allArticles.get(position).getContent());
-//        intent.putExtras(b); //Put your id to your next Intent
+        Bundle b = new Bundle();
+        b.putString("title", allArticles.get(position).getTitle());
+        b.putString("content", allArticles.get(position).getContent());
+        intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
         finish();
 

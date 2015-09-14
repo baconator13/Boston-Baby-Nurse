@@ -3,34 +3,28 @@ package org.example.android.bostonbabynurse;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 public class ArticleContentActivity extends MainActivity {
 
-//    private TextView contentTitle;
-
-
-
-
+    private TextView contentTitle;
+    private TextView contentText;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_content_view);
-//        contentText = (TextView) findViewById(R.id.contentText);
-//        contentTitle = (TextView) findViewById(R.id.contentTitle);
-
-        WebView wv=(WebView)findViewById(R.id.contentWebView);
-
-
+        contentText = (TextView) findViewById(R.id.contentText);
+        contentTitle = (TextView) findViewById(R.id.contentTitle);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
@@ -65,14 +59,12 @@ public class ArticleContentActivity extends MainActivity {
             }
         });
 
-//        Bundle b = getIntent().getExtras();
-//        String artTitle = b.getString("title");
-//        String artContent = b.getString("content");
-//        contentText.setText(artTitle);
-//        contentTitle.setText(artContent);
-
-        wv.getSettings().setJavaScriptEnabled(true);
-        wv.loadUrl(this.getIntent().getDataString());
+        Bundle b = getIntent().getExtras();
+        String artTitle = b.getString("title");
+        String artContent = b.getString("content");
+        contentText.setText(artContent);
+        contentTitle.setText(artTitle);
+        contentText.setMovementMethod(new ScrollingMovementMethod());
 
     }
 
