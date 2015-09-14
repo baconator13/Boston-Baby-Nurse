@@ -30,6 +30,7 @@
         <activity android:name=".EducationActivity"/>
         <activity android:name=".EventsActivity"/>
         <activity android:name=".ForumActivity"/>
+        <activity android:name=".ArticleContentActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

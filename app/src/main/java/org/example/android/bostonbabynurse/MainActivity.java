@@ -108,6 +108,25 @@ public class MainActivity extends AppCompatActivity {
 
         listViewArticles.setVisibility(listViewArticles.VISIBLE);
         listViewArticles.setAdapter(articleAdapter);
+
+
+
+
+
+        // Article Item click listeners
+        listViewArticles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectArticle(position);
+            }
+        });
+
+
+
+
+
+
+
     }
 
 
@@ -221,10 +240,11 @@ public class MainActivity extends AppCompatActivity {
             //ImageView icon = (ImageView) view.findViewById(R.id.articleIcon);
 
 
+            String artDescription = android.text.Html.fromHtml(allArticles.get(position).getDescription()).toString();
 
             title.setText(allArticles.get(position).getTitle());
             pubDate.setText((allArticles.get(position).getPubDate()).substring(0, 16));
-            description.setText(android.text.Html.fromHtml(allArticles.get(position).getDescription()).toString());
+            description.setText(artDescription.substring(0, 100) + "...");
             //icon.setImageResource(allArticles.get(position).ge);
 
             return view;
@@ -262,6 +282,37 @@ public class MainActivity extends AppCompatActivity {
         // Close the drawer
         mDrawerLayout.closeDrawer(mDrawerPane);
     }
+
+
+
+
+
+
+
+    protected void selectArticle(int position) {
+        Intent intent = new Intent(MainActivity.this, ArticleContentActivity.class);
+
+        listViewArticles.setItemChecked(position, true);
+
+
+
+        Bundle b = new Bundle();
+        b.putString("title", allArticles.get(position).getTitle()); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
+        finish();
+
+
+    }
+
+
+
+
+
+
+
+
+
 
     private class DownloadData extends AsyncTask<String, Void, String> {
 

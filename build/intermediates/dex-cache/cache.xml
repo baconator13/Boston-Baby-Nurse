@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/alexanderarsenault/AndroidStudioProjects/BostonBabyNurse/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jar="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
-        <dex dex="/Users/alexanderarsenault/AndroidStudioProjects/BostonBabyNurse/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-769ed2af330decbbb46c62b7ae8cb3b3f1f227b6.jar" />
-    </item>
-    <item
-        jar="/Users/alexanderarsenault/AndroidStudioProjects/BostonBabyNurse/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0"
-        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
-        <dex dex="/Users/alexanderarsenault/AndroidStudioProjects/BostonBabyNurse/app/build/intermediates/pre-dexed/debug/classes-61de7f0303fa92093325c15c8eb6b55fec725fdd.jar" />
+        <dex dex="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-b7ad4fa787d088cc25cb475f3f79539747d8d5b6.jar" />
     </item>
     <item
         jar="/Users/alexanderarsenault/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
-        <dex dex="/Users/alexanderarsenault/AndroidStudioProjects/BostonBabyNurse/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-3da4573d1e2ef6a322b7e4ee21741259ea7accf2.jar" />
+        <dex dex="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-3da4573d1e2ef6a322b7e4ee21741259ea7accf2.jar" />
     </item>
     <item
-        jar="/Users/alexanderarsenault/AndroidStudioProjects/BostonBabyNurse/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/jars/classes.jar"
+        jar="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/pre-dexed/debug/classes-dece01b3e4a6d24433cd2a1ec3c9ee9d3d165f54.jar" />
+    </item>
+    <item
+        jar="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
-        <dex dex="/Users/alexanderarsenault/AndroidStudioProjects/BostonBabyNurse/app/build/intermediates/pre-dexed/debug/classes-b9cc85ee56cbad4421a354a78dedcd450c29d716.jar" />
+        <dex dex="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/pre-dexed/debug/classes-03b55948bf69fc7c6c042a10f5281af8aa9862bd.jar" />
     </item>
 
 </items>
