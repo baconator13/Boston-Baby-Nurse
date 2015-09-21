@@ -27,12 +27,19 @@ public class EducationActivity extends MainActivity {
         setContentView(R.layout.education_view);
         setTitle("Education");
 
-        ImageView sleeping_img = (ImageView) findViewById(R.id.sleep_image);
         ImageView feeding_img = (ImageView) findViewById(R.id.feed_image);
+        ImageView sleeping_img = (ImageView) findViewById(R.id.sleep_image);
+
+        feeding_img.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(EducationActivity.this, FeedingEducationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         sleeping_img.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(EducationActivity.this, FeedingEducationActivity.class);
+                Intent intent = new Intent(EducationActivity.this, SleepingEducationActivity.class);
                 startActivity(intent);
             }
         });

@@ -2,7 +2,13 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ActionBar" parent="@style/Base.Widget.AppCompat.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
     </style>
 
     <style name="Theme.Base" parent="AppTheme">
@@ -10,23 +16,22 @@
         <item name="colorPrimaryDark">@color/md_cyan_700</item>
         <item name="colorAccent">@color/ColorBackgroundAccent</item>
         <item name="android:windowBackground">@color/BackgroundColor</item>
-
     </style>
 
-    <style name="Theme.BostonBabyNurse" parent="Theme.Base"/>
+    <style name="Theme.BostonBabyNurse" parent="Theme.Base" />
 
     <style name="ActionBarThemeOverlay" parent="">
         <item name="android:textColorPrimary">@color/PrimaryTextColor</item>
         <item name="colorControlHighlight">@color/BackgroundColor</item>
         <item name="android:actionMenuTextColor">@color/PrimaryTextColor</item>
         <item name="android:textColorSecondary">@color/SecondaryTextColor</item>
-        <item name="android:background">@color/md_white_1000</item>
-
     </style>
 
     <style name="ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/PrimaryTextColor</item>
+        <item name="android:textColor">@color/md_white_1000</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+
 
 </resources>

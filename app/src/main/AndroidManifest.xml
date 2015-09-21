@@ -39,18 +39,30 @@
             android:label="Forum"/>
 
 
-        <!--Education Content Activities-->
+        <!--Feeding Education Content Activities-->
         <activity
             android:name=".FeedingEducationActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.example.android.bostonbabynurse.MainActivity" />
+                android:value="org.example.android.bostonbabynurse.EducationActivity" />
         </activity>
 
 
-        <!--Article Content Activity-->
+        <!--Sleeping Education Content Activities-->
+        <activity
+            android:name=".SleepingEducationActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.EducationActivity" />
+        </activity>
+
+
+
+        <!--Feeding Education Content Activity-->
         <activity
             android:name=".ArticleContentActivity"
             android:parentActivityName=".MainActivity"

@@ -7,16 +7,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
-public class FeedingEducationActivity extends AppCompatActivity {
+/**
+ * Created by alexanderarsenault on 9/21/15.
+ */
+public class SleepingEducationActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.feeding_education_view);
-        setTitle("Feeding");
+        setContentView(R.layout.sleeping_education_view);
+        setTitle("Sleeping");
 
         activateToolbarWithHomeEnabled();
     }
@@ -61,7 +63,6 @@ public class FeedingEducationActivity extends AppCompatActivity {
         if (toolbar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
         return toolbar;
 
     }

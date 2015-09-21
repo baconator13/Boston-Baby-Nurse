@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/PrimaryBackgroundColor"
-    android:parentActivityName=".EducationActivity"
+    android:parentActivityName=".MainActivity"
     custom:contentInsetStart="0dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <include
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="How to feed your baby"
+            android:text="How to get your baby to sleep"
             android:layout_below="@+id/app_bar"/>
 
     </RelativeLayout>
