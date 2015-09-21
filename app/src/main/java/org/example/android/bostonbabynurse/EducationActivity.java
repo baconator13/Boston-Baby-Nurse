@@ -1,5 +1,6 @@
 package org.example.android.bostonbabynurse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -7,19 +8,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
+
+
 
 /**
  * Created by alexanderarsenault on 8/24/15.
  */
 public class EducationActivity extends MainActivity {
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.education_view);
         setTitle("Education");
+
+        ImageView sleeping_img = (ImageView) findViewById(R.id.sleep_image);
+        ImageView feeding_img = (ImageView) findViewById(R.id.feed_image);
+
+        sleeping_img.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(EducationActivity.this, FeedingEducationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);

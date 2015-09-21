@@ -4,38 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 
-public class ArticleContentActivity extends AppCompatActivity {
+public class FeedingEducationActivity extends AppCompatActivity {
 
-    private TextView contentTitle;
-    private TextView contentText;
     private Toolbar toolbar;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.article_content_view);
+        setContentView(R.layout.feeding_education_view);
+        setTitle("Feeding");
 
         activateToolbarWithHomeEnabled();
-
-        Bundle b = getIntent().getExtras();
-        String artTitle = b.getString("title");
-        String artContent = b.getString("content");
-
-        setTitle(artTitle);
-        contentText = (TextView) findViewById(R.id.contentText);
-
-        contentText.setText(artContent);
-        contentText.setMovementMethod(new ScrollingMovementMethod());
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,16 +31,14 @@ public class ArticleContentActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent myIntent = new Intent(getApplicationContext(), EducationActivity.class);
             startActivityForResult(myIntent, 0);
             return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override

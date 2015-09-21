@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
         listViewArticles = (ListView) findViewById(R.id.articleList);
 
         mNavItems.add(new NavItem("Home", "The latest from the Boston Baby Nurse blog", R.drawable.ic_home_black_48dp));
-        mNavItems.add(new NavItem("Events", "Upcoming Boston Baby Nurse events", R.drawable.ic_event_black_48dp));
         mNavItems.add(new NavItem("Community forum", "Reach out and connect with new parents", R.drawable.ic_forum_black_48dp));
         mNavItems.add(new NavItem("Education", "Learning materials for new parents", R.drawable.ic_class_black_48dp));
+        mNavItems.add(new NavItem("Schedule a visit", "Reach out to the Boston Baby Nurse team", R.drawable.ic_event_black_48dp));
 
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -264,15 +264,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case 1:
-                intent = new Intent(MainActivity.this, EventsActivity.class);
-                startActivity(intent);
-                break;
-            case 2:
                 intent = new Intent(MainActivity.this, ForumActivity.class);
                 startActivity(intent);
                 break;
-            case 3:
+            case 2:
                 intent = new Intent(MainActivity.this, EducationActivity.class);
+                startActivity(intent);
+                break;
+            case 3:
+                intent = new Intent(MainActivity.this, EventsActivity.class);
                 startActivity(intent);
                 break;
         }

@@ -3,11 +3,63 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/PrimaryBackgroundColor">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Educational resources"/>
+        android:text="Educational resources" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sleep_text"
+            android:textColor="@color/PrimaryTextColor"
+            android:text="Sleeping"
+            android:textSize="24sp"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/sleep_image"
+            android:layout_below="@+id/sleep_text"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/sleeping_baby"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sleep_image"
+            android:textColor="@color/PrimaryTextColor"
+            android:id="@+id/feeding_text"
+            android:text="Feeding"
+            android:textSize="24sp"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:id="@+id/feed_image"
+            android:layout_below="@+id/feeding_text"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/eating_baby"/>
+
+
+    </RelativeLayout>
+
+    </LinearLayout>
 
 
     <!-- The navigation drawer -->
