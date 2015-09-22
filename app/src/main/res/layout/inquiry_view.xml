@@ -1,0 +1,84 @@
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/PrimaryBackgroundColor"
+    android:parentActivityName=".EducationActivity"
+    custom:contentInsetStart="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/toolbar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Call Boston Baby Nurse today at 781-444-4063 or submit the form below and someone will reply as quickly as possible."
+            android:layout_below="@+id/app_bar"
+            android:id="@+id/textView3" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="First name"
+            android:ems="8"
+            android:id="@+id/firstNameTxt"
+            android:layout_marginTop="71dp"
+            android:layout_alignTop="@+id/textView3"
+            android:paddingLeft="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Last name"
+            android:ems="9"
+            android:id="@+id/lastNameTxt"
+            android:layout_alignTop="@+id/firstNameTxt"
+            android:paddingRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:ems="10"
+            android:id="@+id/emailTxt"
+            android:layout_below="@+id/firstNameTxt"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="34dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/messageTxt"
+            android:hint="Message"
+            android:layout_below="@+id/emailTxt"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="65dp"
+            android:layout_alignRight="@+id/emailTxt"
+            android:layout_alignEnd="@+id/emailTxt" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/submitBtn"
+            android:layout_below="@+id/messageTxt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="56dp" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.Toolbar>

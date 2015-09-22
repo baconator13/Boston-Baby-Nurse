@@ -50,7 +50,7 @@
         </activity>
 
 
-        <!--Sleeping Education Content Activities-->
+        <!--Sleeping Education Content Activity-->
         <activity
             android:name=".SleepingEducationActivity"
             android:parentActivityName=".MainActivity"
@@ -71,6 +71,19 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value="org.example.android.bostonbabynurse.MainActivity" />
         </activity>
+
+
+        <!--Inquiry Activity-->
+        <activity
+            android:name=".InquiryActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.MainActivity" />
+        </activity>
+
+
 
     </application>
 

@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -14,6 +16,9 @@ import android.widget.RelativeLayout;
  * Created by alexanderarsenault on 8/24/15.
  */
 public class ForumActivity extends MainActivity {
+
+
+    private WebView forumView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +29,7 @@ public class ForumActivity extends MainActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
         mDrawerList = (ListView) findViewById(R.id.navList);
-        MainActivity.DrawerListAdapter adapter = new MainActivity.DrawerListAdapter(this, mNavItems);
+        DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
         mDrawerList.setAdapter(adapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -53,6 +58,16 @@ public class ForumActivity extends MainActivity {
                 selectItemFromDrawer(position);
             }
         });
+
+        forumView = (WebView) findViewById(R.id.forumView);
+        forumView.setWebViewClient(new MyBrowser());
+
+        forumView.getSettings().setLoadsImagesAutomatically(true);
+        forumView.getSettings().setJavaScriptEnabled(true);
+        forumView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        forumView.loadUrl("http://bostonbabynurse.forumotion.com");
+
+
     }
 
 
@@ -74,4 +89,20 @@ public class ForumActivity extends MainActivity {
         // Handle your other action bar items...
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    private class MyBrowser extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+    }
+
+
+
+
+
+
 }
