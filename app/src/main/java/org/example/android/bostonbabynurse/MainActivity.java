@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mNavItems.add(new NavItem("Home", "The latest from the Boston Baby Nurse blog", R.drawable.ic_home_black_48dp));
         mNavItems.add(new NavItem("Community forum", "Reach out and connect with new parents", R.drawable.ic_forum_black_48dp));
         mNavItems.add(new NavItem("Education", "Learning materials for new parents", R.drawable.ic_class_black_48dp));
-        mNavItems.add(new NavItem("Schedule a visit", "Reach out to the Boston Baby Nurse team", R.drawable.ic_event_black_48dp));
+        mNavItems.add(new NavItem("Inquiry", "Reach out to the Boston Baby Nurse team", R.drawable.ic_event_black_48dp));
 
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -97,19 +97,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         new DownloadData().execute("http://bostonbabynurse.com/feed/");
-
-        for (Article art : allArticles) {
-            Log.d("allArticles:  ", art.toString());
-        }
-
-
-//        May be redundant...
-//        Consider removing for cleanliness
-
-//        Log.v("111", "onCreate method");
-//        ArticleAdapter articleAdapter = new ArticleAdapter(this, allArticles);
-//        listViewArticles.setVisibility(listViewArticles.VISIBLE);
-//        listViewArticles.setAdapter(articleAdapter);
 
         // Set on click listeners for the article items
         listViewArticles.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,25 +33,26 @@ public class ForumActivity extends AppCompatActivity {
 
     private EditText etMessage;
     private Button btSend;
-    private Toolbar toolbar;
 
     private ListView lvChat;
     private ArrayList<Message> mMessages;
     private ChatListAdapter mAdapter;
+
     // Keep track of initial load to scroll to the bottom of the ListView
     private boolean mFirstLoad;
     private Handler handler = new Handler();
 
     private static final int MAX_CHAT_MESSAGES_TO_SHOW = 50;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
-        activateToolbarWithHomeEnabled();
+        setContentView(R.layout.forum_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (ParseUser.getCurrentUser() != null) { // start with existing user
             startWithCurrentUser();
-        } else { // If not logged in, login as a new anonymous user
+        } else {                                  // If not logged in, login as a new anonymous user
             login();
         }
         handler.postDelayed(runnable, 100);
@@ -186,25 +186,5 @@ public class ForumActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-    public Toolbar activateToolbar() {
-        if (toolbar == null) {
-            toolbar = (Toolbar) findViewById(R.id.app_bar);
-            if (toolbar != null) {
-                setSupportActionBar(toolbar);
-            }
-        }
-        return toolbar;
-    }
-
-    public Toolbar activateToolbarWithHomeEnabled() {
-        activateToolbar();
-        if (toolbar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        return toolbar;
-
-    }
-
 
 }

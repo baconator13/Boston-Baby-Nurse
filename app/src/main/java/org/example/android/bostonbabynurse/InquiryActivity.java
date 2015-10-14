@@ -30,14 +30,13 @@ public class InquiryActivity extends AppCompatActivity {
         setContentView(R.layout.inquiry_view);
         setTitle("Reach out to Boston Baby Nurse");
 
-        activateToolbarWithHomeEnabled();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mSubmitBtn = (Button) findViewById(R.id.submitBtn);
         mFirstName = (EditText) findViewById(R.id.firstNameTxt);
         mLastName = (EditText) findViewById(R.id.lastNameTxt);
         mEmail = (EditText) findViewById(R.id.emailTxt);
         mMessage = (EditText) findViewById(R.id.messageTxt);
-
 
         mSubmitBtn.setOnClickListener(
                 new View.OnClickListener() {
@@ -69,9 +68,11 @@ public class InquiryActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        //inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -90,26 +91,6 @@ public class InquiryActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    public Toolbar activateToolbar() {
-        if (toolbar == null) {
-            toolbar = (Toolbar) findViewById(R.id.app_bar);
-            if (toolbar != null) {
-                setSupportActionBar(toolbar);
-            }
-        }
-        return toolbar;
-    }
-
-    public Toolbar activateToolbarWithHomeEnabled() {
-        activateToolbar();
-        if (toolbar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
-        return toolbar;
-
     }
 
 }

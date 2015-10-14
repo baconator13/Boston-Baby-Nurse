@@ -3,14 +3,11 @@ package org.example.android.bostonbabynurse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class FeedingEducationActivity extends AppCompatActivity {
-
-    private Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,7 +15,7 @@ public class FeedingEducationActivity extends AppCompatActivity {
         setContentView(R.layout.feeding_education_view);
         setTitle("Feeding");
 
-        activateToolbarWithHomeEnabled();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -44,26 +41,6 @@ public class FeedingEducationActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    public Toolbar activateToolbar() {
-        if (toolbar == null) {
-            toolbar = (Toolbar) findViewById(R.id.app_bar);
-            if (toolbar != null) {
-                setSupportActionBar(toolbar);
-            }
-        }
-        return toolbar;
-    }
-
-    public Toolbar activateToolbarWithHomeEnabled() {
-        activateToolbar();
-        if (toolbar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
-        return toolbar;
-
     }
 
 }
