@@ -60,9 +60,8 @@
 
         <!--Article Content Activity-->
         <activity
-            android:name=".ArticleContentActivity"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name="org.example.android.bostonbabynurse.ArticleContentActivity"
+            android:label="@string/app_name">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="org.example.android.bostonbabynurse.MainActivity" />
@@ -87,6 +86,27 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.example.android.bostonbabynurse.MainActivity" />
         </activity>
+
+
+        <!--Login Signup Activity-->
+        <activity
+            android:name="org.example.android.bostonbabynurse.LoginSignupActivity"
+            android:label="@string/app_name">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.MainActivity" />
+        </activity>
+
+
+        <!--Signup Form-->
+        <activity
+            android:name="org.example.android.bostonbabynurse.SignupForm"
+            android:label="Sign up for a BBN account">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.MainActivity" />
+        </activity>
+
 
     </application>
 

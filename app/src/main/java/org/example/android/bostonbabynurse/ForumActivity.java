@@ -14,8 +14,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.LogInCallback;
-import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -50,11 +48,15 @@ public class ForumActivity extends AppCompatActivity {
         setContentView(R.layout.forum_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (ParseUser.getCurrentUser() != null) { // start with existing user
-            startWithCurrentUser();
-        } else {                                  // If not logged in, login as a new anonymous user
-            login();
-        }
+
+        sUserId = ParseUser.getCurrentUser().getObjectId();
+        setupMessagePosting();
+
+//        if (ParseUser.getCurrentUser() != null) { // start with existing user
+//            startWithCurrentUser();
+//        } else {                                  // If not logged in, login as a new anonymous user
+//            login();
+//        }
         handler.postDelayed(runnable, 100);
     }
 
@@ -73,10 +75,10 @@ public class ForumActivity extends AppCompatActivity {
     }
 
     // Get the userId from the cached currentUser object
-    private void startWithCurrentUser() {
-        sUserId = ParseUser.getCurrentUser().getObjectId();
-        setupMessagePosting();
-    }
+//    private void startWithCurrentUser() {
+//        sUserId = ParseUser.getCurrentUser().getObjectId();
+//        setupMessagePosting();
+//    }
 
     // Setup button event handler which posts the entered message to Parse
     private void setupMessagePosting() {
@@ -114,18 +116,18 @@ public class ForumActivity extends AppCompatActivity {
 
 
     // Create an anonymous user using ParseAnonymousUtils and set sUserId
-    private void login() {
-        ParseAnonymousUtils.logIn(new LogInCallback() {
-            @Override
-            public void done(ParseUser user, ParseException e) {
-                if (e != null) {
-                    Log.d(TAG, "Anonymous login failed: " + e.toString());
-                } else {
-                    startWithCurrentUser();
-                }
-            }
-        });
-    }
+//    private void login() {
+//        ParseAnonymousUtils.logIn(new LogInCallback() {
+//            @Override
+//            public void done(ParseUser user, ParseException e) {
+//                if (e != null) {
+//                    Log.d(TAG, "Anonymous login failed: " + e.toString());
+//                } else {
+//                    startWithCurrentUser();
+//                }
+//            }
+//        });
+//    }
 
     private void receiveMessage() {
         // Construct query to execute

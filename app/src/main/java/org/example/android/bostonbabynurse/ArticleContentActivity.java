@@ -22,7 +22,7 @@ public class ArticleContentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_content_view);
 
-        activateToolbarWithHomeEnabled();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
         String artTitle = b.getString("title");
@@ -63,25 +63,6 @@ public class ArticleContentActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    public Toolbar activateToolbar() {
-        if (toolbar == null) {
-            toolbar = (Toolbar) findViewById(R.id.app_bar);
-            if (toolbar != null) {
-                setSupportActionBar(toolbar);
-            }
-        }
-        return toolbar;
-    }
-
-    public Toolbar activateToolbarWithHomeEnabled() {
-        activateToolbar();
-        if (toolbar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-        return toolbar;
-
     }
 
 }

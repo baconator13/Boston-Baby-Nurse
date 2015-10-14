@@ -63,7 +63,6 @@ public class InquiryActivity extends AppCompatActivity {
         );
 
 
-
     }
 
     @Override

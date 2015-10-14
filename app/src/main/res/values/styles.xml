@@ -20,7 +20,7 @@
         <item name="colorPrimary">@color/md_cyan_500</item>
         <item name="colorPrimaryDark">@color/md_cyan_700</item>
         <item name="colorAccent">@color/ColorBackgroundAccent</item>
-        <item name="android:windowBackground">@color/md_cyan_700</item>
+        <item name="android:windowBackground">@color/md_white_1000</item>
     </style>
 
     <style name="Theme.BostonBabyNurse" parent="Theme.Base" />
