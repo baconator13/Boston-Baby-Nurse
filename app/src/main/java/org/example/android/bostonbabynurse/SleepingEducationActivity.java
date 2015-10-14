@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.parse.ParseUser;
 
 /**
  * Created by alexanderarsenault on 9/21/15.
@@ -37,6 +40,17 @@ public class SleepingEducationActivity extends AppCompatActivity {
             startActivityForResult(myIntent, 0);
             return true;
         }
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Successfully logged out", Toast.LENGTH_SHORT).show();
+                ParseUser.logOut();
+                Intent intent = new Intent(SleepingEducationActivity.this, LoginSignupActivity.class);
+                startActivity(intent);
+                finish();
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 

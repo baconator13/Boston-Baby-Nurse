@@ -7,13 +7,15 @@
 
     </style>
 
+
+
+
+
     <style name="ActionBar" >
         <item name="contentInsetStart">0dp</item>
         <item name="contentInsetEnd">0dp</item>
         <item name="colorPrimary">@color/md_cyan_700</item>
         <item name="colorPrimaryDark">@color/md_cyan_800</item>
-
-
     </style>
 
     <style name="Theme.Base" parent="AppTheme">

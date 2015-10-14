@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseUser;
+
 public class InquiryActivity extends AppCompatActivity {
 
 
@@ -83,6 +85,17 @@ public class InquiryActivity extends AppCompatActivity {
             startActivityForResult(myIntent, 0);
             return true;
         }
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Successfully logged out", Toast.LENGTH_SHORT).show();
+                ParseUser.logOut();
+                Intent intent = new Intent(InquiryActivity.this, LoginSignupActivity.class);
+                startActivity(intent);
+                finish();
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 

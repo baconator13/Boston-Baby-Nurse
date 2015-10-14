@@ -11,8 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-
+import com.parse.ParseUser;
 
 
 /**
@@ -94,7 +95,17 @@ public class EducationActivity extends MainActivity {
             return true;
         }
 
-        // Handle your other action bar items...
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Successfully logged out", Toast.LENGTH_SHORT).show();
+                ParseUser.logOut();
+                Intent intent = new Intent(EducationActivity.this, LoginSignupActivity.class);
+                startActivity(intent);
+                finish();
+        }
+
+
+
         return super.onOptionsItemSelected(item);
     }
 

@@ -170,15 +170,25 @@ public class ForumActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         if (id == android.R.id.home) {
             Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivityForResult(myIntent, 0);
             return true;
         }
+
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Successfully logged out", Toast.LENGTH_SHORT).show();
+                ParseUser.logOut();
+                Intent intent = new Intent(ForumActivity.this, LoginSignupActivity.class);
+                startActivity(intent);
+                finish();
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
