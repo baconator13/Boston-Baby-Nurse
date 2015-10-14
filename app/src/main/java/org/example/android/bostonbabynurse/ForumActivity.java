@@ -1,8 +1,10 @@
 package org.example.android.bostonbabynurse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +16,6 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -27,15 +28,13 @@ import java.util.List;
 
 public class ForumActivity extends AppCompatActivity {
 
-    public static final String YOUR_APPLICATION_ID = "FHr4iYzp2owb09hTDgSoar5vJowOPDmdeN5Q1Myq";
-    public static final String YOUR_CLIENT_KEY = "xRm0mffpR9dT15rFkrv3VXtHCduAL1F6o7tUYKMe";
-
     private static final String TAG = ForumActivity.class.getName();
     private static String sUserId;
     public static final String USER_ID_KEY = "userId";
 
     private EditText etMessage;
     private Button btSend;
+    private Toolbar toolbar;
 
     private ListView lvChat;
     private ArrayList<Message> mMessages;
@@ -49,10 +48,7 @@ public class ForumActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        // Register your parse models here
-        ParseObject.registerSubclass(Message.class);
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, YOUR_APPLICATION_ID, YOUR_CLIENT_KEY);
+        activateToolbarWithHomeEnabled();
 
         if (ParseUser.getCurrentUser() != null) { // start with existing user
             startWithCurrentUser();
@@ -176,7 +172,38 @@ public class ForumActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == android.R.id.home) {
+            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(myIntent, 0);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public Toolbar activateToolbar() {
+        if (toolbar == null) {
+            toolbar = (Toolbar) findViewById(R.id.app_bar);
+            if (toolbar != null) {
+                setSupportActionBar(toolbar);
+            }
+        }
+        return toolbar;
+    }
+
+    public Toolbar activateToolbarWithHomeEnabled() {
+        activateToolbar();
+        if (toolbar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        return toolbar;
+
     }
 
 
