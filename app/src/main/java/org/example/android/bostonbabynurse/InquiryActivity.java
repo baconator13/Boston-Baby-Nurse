@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,16 +36,16 @@ public class InquiryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mSubmitBtn = (Button) findViewById(R.id.submitBtn);
-        mFirstName = (EditText) findViewById(R.id.firstNameTxt);
-        mLastName = (EditText) findViewById(R.id.lastNameTxt);
+
         mEmail = (EditText) findViewById(R.id.emailTxt);
         mMessage = (EditText) findViewById(R.id.messageTxt);
+        mMessage.setGravity(Gravity.TOP| Gravity.LEFT);
 
         mSubmitBtn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        firstName = mFirstName.getText().toString();
-                        lastName = mLastName.getText().toString();
+                        //firstName = mFirstName.getText().toString();
+                        //lastName = mLastName.getText().toString();
                         Email = mEmail.getText().toString();
                         Message = mMessage.getText().toString();
 
@@ -52,7 +53,7 @@ public class InquiryActivity extends AppCompatActivity {
                         submitIntent.setType("message/rfc822");
                         submitIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"alexarsenault92@gmail.com"});
                         submitIntent.putExtra(Intent.EXTRA_SUBJECT, "New BBN Inquiry from App");
-                        submitIntent.putExtra(Intent.EXTRA_TEXT, "Inquiry from: " + firstName + " " + lastName + "\n\n" + "Return email: " + Email + "\n\n" + Message);
+                        submitIntent.putExtra(Intent.EXTRA_TEXT, Email + "\n\n" + Message);
 
 
                         try {

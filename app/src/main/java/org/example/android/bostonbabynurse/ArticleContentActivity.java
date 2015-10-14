@@ -3,7 +3,6 @@ package org.example.android.bostonbabynurse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,8 +16,6 @@ public class ArticleContentActivity extends AppCompatActivity {
 
     private TextView contentTitle;
     private TextView contentText;
-    private Toolbar toolbar;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,14 +25,19 @@ public class ArticleContentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
+
         String artTitle = b.getString("title");
         String artContent = b.getString("content");
 
         setTitle(artTitle);
+
         contentText = (TextView) findViewById(R.id.contentText);
+        contentTitle = (TextView) findViewById(R.id.contentTitle);
+
 
         contentText.setText(artContent);
         contentText.setMovementMethod(new ScrollingMovementMethod());
+        contentTitle.setText(artTitle);
 
     }
 

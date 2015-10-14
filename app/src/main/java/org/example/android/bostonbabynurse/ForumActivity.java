@@ -52,11 +52,6 @@ public class ForumActivity extends AppCompatActivity {
         sUserId = ParseUser.getCurrentUser().getObjectId();
         setupMessagePosting();
 
-//        if (ParseUser.getCurrentUser() != null) { // start with existing user
-//            startWithCurrentUser();
-//        } else {                                  // If not logged in, login as a new anonymous user
-//            login();
-//        }
         handler.postDelayed(runnable, 100);
     }
 
@@ -74,11 +69,6 @@ public class ForumActivity extends AppCompatActivity {
         receiveMessage();
     }
 
-    // Get the userId from the cached currentUser object
-//    private void startWithCurrentUser() {
-//        sUserId = ParseUser.getCurrentUser().getObjectId();
-//        setupMessagePosting();
-//    }
 
     // Setup button event handler which posts the entered message to Parse
     private void setupMessagePosting() {
@@ -88,7 +78,7 @@ public class ForumActivity extends AppCompatActivity {
         // When send button is clicked, create message object on Parse
 
         lvChat = (ListView) findViewById(R.id.lvChat);
-        mMessages = new ArrayList<Message>();
+        mMessages = new ArrayList<>();
         // Automatically scroll to the bottom when a data set change notification is received and only if the last item is already visible on screen. Don't scroll to the bottom otherwise.
         lvChat.setTranscriptMode(1);
         mFirstLoad = true;
@@ -113,21 +103,6 @@ public class ForumActivity extends AppCompatActivity {
             }
         });
     }
-
-
-    // Create an anonymous user using ParseAnonymousUtils and set sUserId
-//    private void login() {
-//        ParseAnonymousUtils.logIn(new LogInCallback() {
-//            @Override
-//            public void done(ParseUser user, ParseException e) {
-//                if (e != null) {
-//                    Log.d(TAG, "Anonymous login failed: " + e.toString());
-//                } else {
-//                    startWithCurrentUser();
-//                }
-//            }
-//        });
-//    }
 
     private void receiveMessage() {
         // Construct query to execute

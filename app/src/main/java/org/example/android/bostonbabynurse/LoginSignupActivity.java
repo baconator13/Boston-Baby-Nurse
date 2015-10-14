@@ -3,6 +3,7 @@ package org.example.android.bostonbabynurse;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class LoginSignupActivity extends Activity {
         // Locate EditTexts in main.xml
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        password.setTransformationMethod(new PasswordTransformationMethod());
 
         // Locate Buttons in main.xml
         loginbutton = (Button) findViewById(R.id.login);

@@ -11,69 +11,50 @@
         android:layout_height="wrap_content">
 
         <TextView
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Call Boston Baby Nurse today at 781-444-4063 or submit the form below and someone will reply as quickly as possible."
-            android:layout_below="@+id/app_bar"
-            android:id="@+id/textView3" />
+            android:layout_height="wrap_content"
+            android:id="@+id/infoTxt"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="Call Boston Baby Nurse today at 781-444-4063 or submit the form below to send an email and someone will reply as quickly as possible."
+            android:layout_marginTop="0dp"
+            android:textSize="18sp" />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="First name"
-            android:ems="8"
-            android:id="@+id/firstNameTxt"
-            android:layout_marginTop="71dp"
-            android:layout_alignTop="@+id/textView3"
-            android:paddingLeft="5dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Last name"
-            android:ems="9"
-            android:id="@+id/lastNameTxt"
-            android:layout_alignTop="@+id/firstNameTxt"
-            android:paddingRight="5dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="Email"
-            android:ems="10"
             android:id="@+id/emailTxt"
-            android:layout_below="@+id/firstNameTxt"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="34dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/editTextClassic"
+            android:layout_below="@id/infoTxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="preferred contact email"/>
+
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             android:id="@+id/messageTxt"
-            android:hint="Message"
+            style="@style/editTextClassic"
+            android:gravity="top|left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_below="@+id/emailTxt"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="65dp"
-            android:layout_alignRight="@+id/emailTxt"
-            android:layout_alignEnd="@+id/emailTxt" />
+            android:layout_marginTop="10dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
+            android:background="@color/md_grey_100"
+            android:text="Send email"
             android:id="@+id/submitBtn"
             android:layout_below="@+id/messageTxt"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="56dp" />
+            android:layout_marginTop="30dp" />
 
     </RelativeLayout>
 

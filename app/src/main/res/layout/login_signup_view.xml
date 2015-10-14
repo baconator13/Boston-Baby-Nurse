@@ -3,74 +3,84 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="10dip" >
+    android:padding="10dip">
 
     <ImageView
         android:id="@+id/login_logo"
-        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/bbn_logo"/>
+        android:layout_marginTop="60dp"
+        android:src="@drawable/bbn_logo" />
 
-    <TextView
-        android:id="@+id/txtusername"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/login_logo"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Username" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/login_logo"
+        android:hint="username"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center"
         android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtusername"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textAlignment="center" />
 
-    <TextView
-        android:id="@+id/txtpassword"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
-        android:text="Password" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/username"
+        android:hint="password"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center"
         android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtpassword"
-        android:inputType="textPassword" />
+        android:inputType="text"
+        android:textAlignment="center" />
 
-    <Button
-        android:id="@+id/login"
-        android:background="@color/md_grey_100"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
-        android:text="Login" />
+        android:layout_below="@+id/password">
 
-    <Button
-        android:id="@+id/signup"
-        android:layout_marginTop="10dp"
-        android:background="@color/md_grey_100"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login"
-        android:text="Sign Up" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:background="@color/md_grey_100"
+            android:text="Login" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight=".5"></View>
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/login"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/login"
+            android:layout_weight="1"
+            android:background="@color/md_grey_100"
+            android:text="Sign Up" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+    </LinearLayout>
 
 </RelativeLayout>
