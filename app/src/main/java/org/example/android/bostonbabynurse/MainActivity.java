@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,33 +31,29 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private String xmlData;
-
-    protected ListView listViewArticles;
     public ArrayList<Article> allArticles = new ArrayList<>();
 
+    private String xmlData;
     private static String TAG = MainActivity.class.getSimpleName();
 
+    protected ListView listViewArticles;
     protected ListView mDrawerList;
     protected RelativeLayout mDrawerPane;
     protected ActionBarDrawerToggle mDrawerToggle;
     protected DrawerLayout mDrawerLayout;
-
-    Context mContext;
-
     protected ArrayList<NavItem> mNavItems = new ArrayList<>();
 
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("The latest from Carole's blog");
-
+        setTitle("The latest from BBN");
 
         listViewArticles = (ListView) findViewById(R.id.articleList);
 
+        // Add items to the nav bar drawer array list
         mNavItems.add(new NavItem("Home", "The latest from the Boston Baby Nurse blog", R.drawable.ic_home_black_48dp));
         mNavItems.add(new NavItem("Community forum", "Reach out and connect with new parents", R.drawable.ic_forum_black_48dp));
         mNavItems.add(new NavItem("Education", "Learning materials for new parents", R.drawable.ic_class_black_48dp));
@@ -105,28 +102,22 @@ public class MainActivity extends AppCompatActivity {
             Log.d("allArticles:  ", art.toString());
         }
 
-        ArticleAdapter articleAdapter = new ArticleAdapter(this, allArticles);
 
-        listViewArticles.setVisibility(listViewArticles.VISIBLE);
-        listViewArticles.setAdapter(articleAdapter);
+//        May be redundant...
+//        Consider removing for cleanliness
 
+//        Log.v("111", "onCreate method");
+//        ArticleAdapter articleAdapter = new ArticleAdapter(this, allArticles);
+//        listViewArticles.setVisibility(listViewArticles.VISIBLE);
+//        listViewArticles.setAdapter(articleAdapter);
 
-
-
-
-        // Article Item click listeners
+        // Set on click listeners for the article items
         listViewArticles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectArticle(position);
             }
         });
-
-
-
-
-
-
 
     }
 
@@ -238,19 +229,14 @@ public class MainActivity extends AppCompatActivity {
             TextView pubDate = (TextView) view.findViewById(R.id.articlePubDate);
             TextView description = (TextView) view.findViewById(R.id.articleDescription);
 
-            //ImageView icon = (ImageView) view.findViewById(R.id.articleIcon);
-
-
-            //String artDescription = android.text.Html.fromHtml(allArticles.get(position).getDescription()).toString();
-
             title.setText(allArticles.get(position).getTitle());
             pubDate.setText((allArticles.get(position).getPubDate()).substring(0, 16));
             description.setText((allArticles.get(position).getDescription()).substring(0, 100) + "...");
-            //icon.setImageResource(allArticles.get(position).ge);
 
             return view;
         }
     }
+
 
     // Called when a particular item from the drawer is selected
     protected void selectItemFromDrawer(int position) {
@@ -285,11 +271,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
     protected void selectArticle(int position) {
         Intent intent = new Intent(MainActivity.this, ArticleContentActivity.class);
         listViewArticles.setItemChecked(position, true);
@@ -297,20 +278,12 @@ public class MainActivity extends AppCompatActivity {
         Bundle b = new Bundle();
         b.putString("title", allArticles.get(position).getTitle());
         b.putString("content", allArticles.get(position).getContent());
-        intent.putExtras(b); //Put your id to your next Intent
+        intent.putExtras(b); // Put your id to your next Intent
         startActivity(intent);
         finish();
 
 
     }
-
-
-
-
-
-
-
-
 
 
     private class DownloadData extends AsyncTask<String, Void, String> {
@@ -329,22 +302,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            longInfo(myXmlData);
+            //longInfo(myXmlData);
             xmlData = myXmlData;
 
-
-                Log.d("PushedBTN", "Pushed button");
                 ParseArticles parse = new ParseArticles(xmlData);
                 boolean operationStatus = parse.process();
                 if (operationStatus) {
                     allArticles = parse.getArticles();
-
+                    Log.v("111", "onPostExecute method");
                     ArticleAdapter articleAdapter = new ArticleAdapter(MainActivity.this, allArticles);
                     listViewArticles.setVisibility(listViewArticles.VISIBLE);
                     listViewArticles.setAdapter(articleAdapter);
 
                 } else {
-                    Log.d("MainActivity", "Error parsing file");
+
+                    if (mContext == MainActivity.this) {
+                        Log.d("MainActivity", "Error parsing file");
+                        Toast.makeText(MainActivity.this, "Cannot connect to the internet. Please connect and try again", Toast.LENGTH_LONG).show();
+                    }
                 }
         }
 
