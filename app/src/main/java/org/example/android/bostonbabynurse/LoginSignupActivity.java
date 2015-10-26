@@ -2,6 +2,7 @@ package org.example.android.bostonbabynurse;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -35,7 +36,9 @@ public class LoginSignupActivity extends Activity {
         setContentView(R.layout.login_signup_view);
         // Locate EditTexts in main.xml
         username = (EditText) findViewById(R.id.username);
+        username.getBackground().setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_ATOP);
         password = (EditText) findViewById(R.id.password);
+        password.getBackground().setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_ATOP);
         TextView signup = (TextView) findViewById(R.id.signup);
         TextView forgotPassword = (TextView) findViewById(R.id.forgotpassword);
         password.setTransformationMethod(new PasswordTransformationMethod());

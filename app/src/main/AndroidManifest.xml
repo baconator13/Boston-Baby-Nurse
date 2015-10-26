@@ -111,7 +111,7 @@
         <!--Forgot Password-->
         <activity
             android:name="org.example.android.bostonbabynurse.ForgotPassword"
-            android:label="Have your password sent to your email">
+            android:label="Password Reset">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.example.android.bostonbabynurse.MainActivity" />

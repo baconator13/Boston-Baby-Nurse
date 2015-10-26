@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
         listViewArticles = (ListView) findViewById(R.id.articleList);
 
         // Add items to the nav bar drawer array list
-        mNavItems.add(new NavItem("Boston Baby Nurse Home", "The latest from the Boston Baby Nurse blog", R.drawable.ic_home_black_48dp));
-        mNavItems.add(new NavItem("Community Forum", "Reach out and connect with new parents", R.drawable.ic_forum_black_48dp));
-        mNavItems.add(new NavItem("Education Resources", "Learning materials for new parents", R.drawable.ic_class_black_48dp));
-        mNavItems.add(new NavItem("Inquiry", "Reach out to the Boston Baby Nurse team", R.drawable.ic_event_black_48dp));
+        mNavItems.add(new NavItem("Home", "The latest from the Boston Baby Nurse blog", R.drawable.ic_home_black_48dp));
+        mNavItems.add(new NavItem("Forum", "Reach out and connect with new parents", R.drawable.ic_forum_black_48dp));
+        mNavItems.add(new NavItem("Resources", "Learning materials for new parents", R.drawable.ic_class_black_48dp));
+        mNavItems.add(new NavItem("Contact", "Reach out to the Boston Baby Nurse team", R.drawable.ic_event_black_48dp));
 
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
