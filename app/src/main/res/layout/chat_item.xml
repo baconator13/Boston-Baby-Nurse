@@ -11,22 +11,20 @@
         android:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="10sp"
         android:id="@+id/tvDate"
-        android:padding="20dp"
-        android:lines="3"
-        android:layout_marginRight="64dp"
-        android:layout_width="64dp"
+        android:padding="5dp"
+        android:layout_width="128dp"
         android:layout_height="64dp">
     </TextView>
 
     <TextView
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:id="@+id/tvBody"
-        android:padding="20dp"
-        android:lines="3"
-        android:layout_marginRight="64dp"
-        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:lines="5"
+        android:layout_marginRight="32dp"
+        android:layout_width="256dp"
         android:layout_height="64dp">
     </TextView>
 

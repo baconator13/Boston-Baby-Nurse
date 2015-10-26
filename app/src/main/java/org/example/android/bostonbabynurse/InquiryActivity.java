@@ -2,6 +2,7 @@ package org.example.android.bostonbabynurse;
 
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,7 +33,7 @@ public class InquiryActivity extends MainActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inquiry_view);
-        setTitle("Reach out to Boston Baby Nurse");
+        setTitle("Reach Out");
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
@@ -71,6 +72,9 @@ public class InquiryActivity extends MainActivity {
 
         mEmail = (EditText) findViewById(R.id.emailTxt);
         mMessage = (EditText) findViewById(R.id.messageTxt);
+
+        mEmail.getBackground().setColorFilter(getResources().getColor(R.color.md_grey_300), PorterDuff.Mode.SRC_ATOP);
+        mMessage.getBackground().setColorFilter(getResources().getColor(R.color.md_grey_300), PorterDuff.Mode.SRC_ATOP);
         mMessage.setGravity(Gravity.TOP| Gravity.LEFT);
 
         mSubmitBtn.setOnClickListener(
@@ -105,8 +109,7 @@ public class InquiryActivity extends MainActivity {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        //inflater.inflate(R.menu.main_activity_actions, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
@@ -117,11 +120,11 @@ public class InquiryActivity extends MainActivity {
             return true;
         }
 
-        if (id == android.R.id.home) {
-            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivityForResult(myIntent, 0);
-            return true;
-        }
+//        if (id == android.R.id.home) {
+//            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivityForResult(myIntent, 0);
+//            return true;
+//        }
 
         switch (item.getItemId()) {
             case R.id.action_settings:

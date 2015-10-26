@@ -59,7 +59,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         }
         final ImageView profileView = isMe ? holder.imageRight : holder.imageLeft;
         Picasso.with(getContext()).load(getProfileUrl(message.getUserId())).into(profileView);
-        holder.body.setText(message.getBody());
+        holder.body.setText(message.getMessageTitle());
         holder.date.setText(message.getCreatedAt().toString());
         return convertView;
     }

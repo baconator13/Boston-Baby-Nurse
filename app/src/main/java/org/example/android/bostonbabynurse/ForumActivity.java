@@ -32,7 +32,8 @@ public class ForumActivity extends MainActivity {
     private static String sUserId;
     public static final String USER_ID_KEY = "userId";
 
-    private EditText etMessage;
+    private EditText etMessageTitle;
+    private EditText etMessageContent;
     private Button btSend;
 
     private ListView lvChat;
@@ -49,6 +50,7 @@ public class ForumActivity extends MainActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forum_view);
+        setTitle("Community Forum");
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
         mDrawerList = (ListView) findViewById(R.id.navList);
@@ -83,12 +85,15 @@ public class ForumActivity extends MainActivity {
         });
 
 
+
         sUserId = ParseUser.getCurrentUser().getObjectId();
         Log.v("userId*****", sUserId.toString());
         setupMessagePosting();
 
         handler.postDelayed(runnable, 100);
     }
+
+
 
 
     // Defines a runnable which is run every 100ms
@@ -108,7 +113,8 @@ public class ForumActivity extends MainActivity {
     // Setup button event handler which posts the entered message to Parse
     private void setupMessagePosting() {
         // Find the text field and button
-        etMessage = (EditText) findViewById(R.id.etMessage);
+        etMessageTitle = (EditText) findViewById(R.id.etMessage);
+        etMessageContent = (EditText) findViewById(R.id.etMessageContent);
         btSend = (Button) findViewById(R.id.btSend);
         // When send button is clicked, create message object on Parse
 
@@ -123,7 +129,8 @@ public class ForumActivity extends MainActivity {
 
             @Override
             public void onClick(View v) {
-                String mMessage = etMessage.getText().toString();
+                String mMessage = etMessageTitle.getText().toString();
+                String mMessageContent = etMessageContent.getText().toString();
                 String mUsername = ParseUser.getCurrentUser().toString();
 
 //                Message message = new Message();
@@ -132,7 +139,8 @@ public class ForumActivity extends MainActivity {
                 ParseObject message = ParseObject.create("Message");
                 message.put("username", mUsername);
                 message.put(USER_ID_KEY, sUserId);
-                message.put("body", mMessage);
+                message.put("title", mMessage);
+                message.put("content", mMessageContent);
                 message.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
@@ -140,9 +148,35 @@ public class ForumActivity extends MainActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
-                etMessage.setText("");
+                etMessageTitle.setText("");
             }
         });
+
+
+        // Set on click listeners for the article items
+        lvChat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectMessage(position);
+            }
+        });
+    }
+
+
+    protected void selectMessage(int position) {
+        Intent intent = new Intent(ForumActivity.this, MessageContentActivity.class);
+        lvChat.setItemChecked(position, true);
+
+        Bundle b = new Bundle();
+        b.putString("title", mMessages.get(position).getMessageTitle());
+        b.putString("username", mMessages.get(position).getUsername());
+        b.putString("content", mMessages.get(position).getContent());
+
+        intent.putExtras(b); // Put your id to your next Intent
+
+        startActivity(intent);
+        finish();
+
     }
 
     private void receiveMessage() {

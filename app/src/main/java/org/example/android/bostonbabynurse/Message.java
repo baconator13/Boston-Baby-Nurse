@@ -10,9 +10,13 @@ public class Message extends ParseObject {
         return getString("userId");
     }
 
-    public String getBody() {
-        return getString("body");
+    public String getMessageTitle() { return getString("title"); }
+
+    public String getContent() {
+        return getString("content");
     }
+
+    public String getUsername() { return getString("username"); }
 
 
     public void setUserId(String userId) {

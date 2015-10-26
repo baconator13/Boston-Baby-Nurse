@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("The latest from BBN");
+        setTitle("Home");
 
         listViewArticles = (ListView) findViewById(R.id.articleList);
 
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mDrawerList.setItemChecked(position, true);
-        setTitle(mNavItems.get(position).mTitle);
+        //setTitle(mNavItems.get(position).mTitle);
 
         // Close the drawer
         mDrawerLayout.closeDrawer(mDrawerPane);

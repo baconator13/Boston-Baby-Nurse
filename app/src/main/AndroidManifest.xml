@@ -88,6 +88,16 @@
         </activity>
 
 
+        <!--Message Content Activity-->
+        <activity
+            android:name="org.example.android.bostonbabynurse.MessageContentActivity"
+            android:label="Message Content">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.ForumActivity" />
+        </activity>
+
+
         <!--Login Signup Activity-->
         <activity
             android:name="org.example.android.bostonbabynurse.LoginSignupActivity"
