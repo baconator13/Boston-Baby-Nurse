@@ -101,7 +101,17 @@
         <!--Signup Form-->
         <activity
             android:name="org.example.android.bostonbabynurse.SignupForm"
-            android:label="Sign up for a BBN account">
+            android:label="Registration">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.MainActivity" />
+        </activity>
+
+
+        <!--Forgot Password-->
+        <activity
+            android:name="org.example.android.bostonbabynurse.ForgotPassword"
+            android:label="Have your password sent to your email">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.example.android.bostonbabynurse.MainActivity" />

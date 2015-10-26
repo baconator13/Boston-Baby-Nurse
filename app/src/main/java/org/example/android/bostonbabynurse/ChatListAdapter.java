@@ -1,6 +1,7 @@
 package org.example.android.bostonbabynurse;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,11 +34,18 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
             holder.imageLeft = (ImageView)convertView.findViewById(R.id.ivProfileLeft);
             holder.imageRight = (ImageView)convertView.findViewById(R.id.ivProfileRight);
             holder.body = (TextView)convertView.findViewById(R.id.tvBody);
+            holder.date = (TextView)convertView.findViewById(R.id.tvDate);
             convertView.setTag(holder);
         }
         final Message message = (Message)getItem(position);
         final ViewHolder holder = (ViewHolder)convertView.getTag();
-        final boolean isMe = message.getUserId().equals(mUserId);
+        String test = message.getString("userId");
+        Log.v("userId", test);
+        final boolean isMe = message.getString("userId").equals(mUserId);
+//        Log.v("getUserID", muID);
+        Log.v("mUserId", mUserId);
+
+//        final boolean isMe = true;
         // Show-hide image based on the logged-in user.
         // Display the profile image to the right for our user, left for other users.
         if (isMe) {
@@ -52,6 +60,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         final ImageView profileView = isMe ? holder.imageRight : holder.imageLeft;
         Picasso.with(getContext()).load(getProfileUrl(message.getUserId())).into(profileView);
         holder.body.setText(message.getBody());
+        holder.date.setText(message.getCreatedAt().toString());
         return convertView;
     }
 
@@ -73,6 +82,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         public ImageView imageLeft;
         public ImageView imageRight;
         public TextView body;
+        public TextView date;
     }
 
 }

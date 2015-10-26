@@ -14,6 +14,7 @@ public class Message extends ParseObject {
         return getString("body");
     }
 
+
     public void setUserId(String userId) {
         put("userId", userId);
     }

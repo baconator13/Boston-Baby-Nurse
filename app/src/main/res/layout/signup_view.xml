@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/newbackdrop">
 
 
 
@@ -9,88 +10,65 @@
     <EditText
         android:id="@+id/name"
         android:textAlignment="center"
+        style="@style/editTextClassic"
+        android:hint="Name"
         android:layout_centerHorizontal="true"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:inputType="text" />
 
-    <TextView
-        android:id="@+id/txtname"
-        android:layout_width="fill_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name"
-        android:text="Name" />
+
 
 
     <EditText
         android:id="@+id/email"
         android:textAlignment="center"
+        style="@style/editTextClassic"
         android:layout_centerHorizontal="true"
+        android:hint="Email"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtname"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/name"
         android:inputType="text" />
-
-    <TextView
-        android:id="@+id/txtemail"
-        android:layout_width="fill_parent"
-
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/email"
-        android:text="Email" />
-
-
 
 
     <EditText
         android:id="@+id/username"
         android:textAlignment="center"
+        style="@style/editTextClassic"
         android:layout_centerHorizontal="true"
+        android:hint="Username"
+        android:layout_marginTop="10dp"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtemail"
+        android:layout_below="@+id/email"
         android:inputType="text" />
-
-
-    <TextView
-        android:id="@+id/txtusername"
-        android:layout_width="fill_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
-        android:text="Username" />
 
 
     <EditText
         android:id="@+id/password"
         android:layout_width="250dp"
+        style="@style/editTextClassic"
+        android:layout_marginTop="10dp"
+        android:hint="Password"
         android:textAlignment="center"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtusername"
+        android:layout_below="@+id/username"
         android:inputType="textPassword" />
-
-
-    <TextView
-        android:id="@+id/txtpassword"
-        android:layout_width="fill_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
-        android:text="Password" />
 
     <Button
         android:id="@+id/submit"
-        android:background="@color/md_grey_100"
+        android:background="#8AB226"
         android:textAlignment="center"
         android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/password"
-        android:text="Submit" />
+        android:text="Sign up"
+        android:textColor="@color/md_white_1000"/>
 
 </RelativeLayout>

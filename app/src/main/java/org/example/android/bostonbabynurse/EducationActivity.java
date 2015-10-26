@@ -26,7 +26,7 @@ public class EducationActivity extends MainActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.education_view);
-        setTitle("Education");
+        setTitle("Resources for new mothers");
 
         ImageView feeding_img = (ImageView) findViewById(R.id.feed_image);
         ImageView sleeping_img = (ImageView) findViewById(R.id.sleep_image);
@@ -103,8 +103,6 @@ public class EducationActivity extends MainActivity {
                 startActivity(intent);
                 finish();
         }
-
-
 
         return super.onOptionsItemSelected(item);
     }

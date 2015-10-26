@@ -3,14 +3,17 @@ package org.example.android.bostonbabynurse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -23,7 +26,7 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ForumActivity extends AppCompatActivity {
+public class ForumActivity extends MainActivity {
 
     private static final String TAG = ForumActivity.class.getName();
     private static String sUserId;
@@ -46,10 +49,42 @@ public class ForumActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forum_view);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
+        mDrawerList = (ListView) findViewById(R.id.navList);
+        MainActivity.DrawerListAdapter adapter = new MainActivity.DrawerListAdapter(this, mNavItems);
+        mDrawerList.setAdapter(adapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+
+                invalidateOptionsMenu();
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        // Drawer Item click listeners
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItemFromDrawer(position);
+            }
+        });
 
 
         sUserId = ParseUser.getCurrentUser().getObjectId();
+        Log.v("userId*****", sUserId.toString());
         setupMessagePosting();
 
         handler.postDelayed(runnable, 100);
@@ -88,10 +123,16 @@ public class ForumActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String data = etMessage.getText().toString();
+                String mMessage = etMessage.getText().toString();
+                String mUsername = ParseUser.getCurrentUser().toString();
+
+//                Message message = new Message();
+//                message.setUserId(sUserId);
+//                message.setBody(body);
                 ParseObject message = ParseObject.create("Message");
+                message.put("username", mUsername);
                 message.put(USER_ID_KEY, sUserId);
-                message.put("body", data);
+                message.put("body", mMessage);
                 message.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
@@ -148,6 +189,10 @@ public class ForumActivity extends AppCompatActivity {
 //        if (id == R.id.action_settings) {
 //            return true;
 //        }
+
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
 
         if (id == android.R.id.home) {
             Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);

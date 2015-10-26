@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -35,11 +36,13 @@ public class LoginSignupActivity extends Activity {
         // Locate EditTexts in main.xml
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        TextView signup = (TextView) findViewById(R.id.signup);
+        TextView forgotPassword = (TextView) findViewById(R.id.forgotpassword);
         password.setTransformationMethod(new PasswordTransformationMethod());
 
         // Locate Buttons in main.xml
         loginbutton = (Button) findViewById(R.id.login);
-        signup = (Button) findViewById(R.id.signup);
+        //signup = (Button) findViewById(R.id.signup);
 
         // Login Button Click Listener
         loginbutton.setOnClickListener(new View.OnClickListener() {
@@ -67,17 +70,40 @@ public class LoginSignupActivity extends Activity {
                         });
             }
         });
-        // Sign up Button Click Listener
-        signup.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View arg0) {
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(LoginSignupActivity.this, SignupForm.class);
                 startActivity(intent);
-
             }
+
         });
 
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginSignupActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+
+        });
+
+
+        // Sign up Button Click Listener
+//        signup.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View arg0) {
+//                Intent intent = new Intent(LoginSignupActivity.this, SignupForm.class);
+//                startActivity(intent);
+//
+//            }
+//        });
+
     }
+
+
+
 }
 
 

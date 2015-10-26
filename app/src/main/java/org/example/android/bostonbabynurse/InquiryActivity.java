@@ -3,22 +3,23 @@ package org.example.android.bostonbabynurse;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
 
-public class InquiryActivity extends AppCompatActivity {
+public class InquiryActivity extends MainActivity {
 
-
-    private Toolbar toolbar;
     private Button mSubmitBtn;
     private EditText mFirstName;
     private EditText mLastName;
@@ -33,7 +34,38 @@ public class InquiryActivity extends AppCompatActivity {
         setContentView(R.layout.inquiry_view);
         setTitle("Reach out to Boston Baby Nurse");
 
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
+        mDrawerList = (ListView) findViewById(R.id.navList);
+        MainActivity.DrawerListAdapter adapter = new MainActivity.DrawerListAdapter(this, mNavItems);
+        mDrawerList.setAdapter(adapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+
+                invalidateOptionsMenu();
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        // Drawer Item click listeners
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItemFromDrawer(position);
+            }
+        });
 
         mSubmitBtn = (Button) findViewById(R.id.submitBtn);
 
@@ -80,6 +112,10 @@ public class InquiryActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
 
         if (id == android.R.id.home) {
             Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
