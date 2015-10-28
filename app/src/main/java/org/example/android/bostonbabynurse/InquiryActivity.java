@@ -75,7 +75,7 @@ public class InquiryActivity extends MainActivity {
 
         mEmail.getBackground().setColorFilter(getResources().getColor(R.color.md_grey_300), PorterDuff.Mode.SRC_ATOP);
         mMessage.getBackground().setColorFilter(getResources().getColor(R.color.md_grey_300), PorterDuff.Mode.SRC_ATOP);
-        mMessage.setGravity(Gravity.TOP| Gravity.LEFT);
+        mMessage.setGravity(Gravity.TOP | Gravity.LEFT);
 
         mSubmitBtn.setOnClickListener(
                 new View.OnClickListener() {

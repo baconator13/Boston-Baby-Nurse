@@ -18,6 +18,8 @@ public class BBNApplication extends Application {
         Log.v("BBNApplicationClass", "Is this the first thing that runs?");
 
         ParseObject.registerSubclass(Message.class);
+        ParseObject.registerSubclass(Reply.class);
+
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
 

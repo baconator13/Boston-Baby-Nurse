@@ -84,16 +84,12 @@ public class ForumActivity extends MainActivity {
             }
         });
 
-
-
         sUserId = ParseUser.getCurrentUser().getObjectId();
         Log.v("userId*****", sUserId.toString());
         setupMessagePosting();
 
         handler.postDelayed(runnable, 100);
     }
-
-
 
 
     // Defines a runnable which is run every 100ms
@@ -131,13 +127,11 @@ public class ForumActivity extends MainActivity {
             public void onClick(View v) {
                 String mMessage = etMessageTitle.getText().toString();
                 String mMessageContent = etMessageContent.getText().toString();
-                String mUsername = ParseUser.getCurrentUser().toString();
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                String username = currentUser.getString("username");
 
-//                Message message = new Message();
-//                message.setUserId(sUserId);
-//                message.setBody(body);
                 ParseObject message = ParseObject.create("Message");
-                message.put("username", mUsername);
+                message.put("username", "Created by: " + username);
                 message.put(USER_ID_KEY, sUserId);
                 message.put("title", mMessage);
                 message.put("content", mMessageContent);
@@ -171,12 +165,12 @@ public class ForumActivity extends MainActivity {
         b.putString("title", mMessages.get(position).getMessageTitle());
         b.putString("username", mMessages.get(position).getUsername());
         b.putString("content", mMessages.get(position).getContent());
+        b.putString("objectID", mMessages.get(position).getObjectId());
 
         intent.putExtras(b); // Put your id to your next Intent
 
         startActivity(intent);
         finish();
-
     }
 
     private void receiveMessage() {

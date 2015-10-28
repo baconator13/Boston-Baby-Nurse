@@ -28,13 +28,13 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).
-                    inflate(R.layout.chat_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.chat_item, parent, false);
             final ViewHolder holder = new ViewHolder();
             holder.imageLeft = (ImageView)convertView.findViewById(R.id.ivProfileLeft);
             holder.imageRight = (ImageView)convertView.findViewById(R.id.ivProfileRight);
             holder.body = (TextView)convertView.findViewById(R.id.tvBody);
             holder.date = (TextView)convertView.findViewById(R.id.tvDate);
+            holder.username = (TextView)convertView.findViewById(R.id.tvUsername);
             convertView.setTag(holder);
         }
         final Message message = (Message)getItem(position);
@@ -51,7 +51,9 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         if (isMe) {
             holder.imageRight.setVisibility(View.VISIBLE);
             holder.imageLeft.setVisibility(View.GONE);
-            holder.body.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+            holder.body.setGravity(Gravity.LEFT | Gravity.LEFT);
+            holder.date.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+
         } else {
             holder.imageLeft.setVisibility(View.VISIBLE);
             holder.imageRight.setVisibility(View.GONE);
@@ -61,6 +63,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         Picasso.with(getContext()).load(getProfileUrl(message.getUserId())).into(profileView);
         holder.body.setText(message.getMessageTitle());
         holder.date.setText(message.getCreatedAt().toString());
+        holder.username.setText(message.getUsername().toString());
         return convertView;
     }
 
@@ -83,6 +86,7 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
         public ImageView imageRight;
         public TextView body;
         public TextView date;
+        public TextView username;
     }
 
 }

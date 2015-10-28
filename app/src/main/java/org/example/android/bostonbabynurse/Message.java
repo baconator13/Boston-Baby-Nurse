@@ -18,6 +18,8 @@ public class Message extends ParseObject {
 
     public String getUsername() { return getString("username"); }
 
+    public String getReply() { return getString("reply");}
+
 
     public void setUserId(String userId) {
         put("userId", userId);

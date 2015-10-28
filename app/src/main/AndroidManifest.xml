@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.example.android.bostonbabynurse"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.example.android.bostonbabynurse">
 
     <application
+        android:name="org.example.android.bostonbabynurse.BBNApplication"
         android:allowBackup="true"
         android:icon="@drawable/bbn_logo_final"
         android:label="@string/app_name"
-        android:theme="@style/Theme.BostonBabyNurse"
-        android:name="org.example.android.bostonbabynurse.BBNApplication">
+        android:theme="@style/Theme.BostonBabyNurse">
 
         <!--Splash Screen -->
         <activity
@@ -16,26 +17,28 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <!--Main Activity-->
         <activity
             android:name="org.example.android.bostonbabynurse.MainActivity"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"></activity>
 
 
         <!--Navigation Bar Activities-->
-        <activity android:name=".ScheduleActivity"
-            android:label="Schedule"/>
-        <activity android:name=".EducationActivity"
-            android:label="Education"/>
-        <activity android:name=".EventsActivity"
-            android:label="Events"/>
+        <activity
+            android:name=".ScheduleActivity"
+            android:label="Schedule" />
+        <activity
+            android:name=".EducationActivity"
+            android:label="Education" />
+        <activity
+            android:name=".EventsActivity"
+            android:label="Events" />
 
 
         <!--Feeding Education Content Activity-->
@@ -62,9 +65,9 @@
         <activity
             android:name="org.example.android.bostonbabynurse.ArticleContentActivity"
             android:label="@string/app_name">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="org.example.android.bostonbabynurse.MainActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.MainActivity" />
         </activity>
 
 
@@ -96,6 +99,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.example.android.bostonbabynurse.ForumActivity" />
         </activity>
+
+
+        <!--Reply Activity-->
+        <activity
+            android:name="org.example.android.bostonbabynurse.ReplyActivity"
+            android:label="Message Content">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.MessageContentActivity" />
+        </activity>
+
 
 
         <!--Login Signup Activity-->
@@ -130,6 +144,6 @@
 
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

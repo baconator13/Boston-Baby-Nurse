@@ -1,48 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-    <ImageView
-        android:id="@+id/ivProfileLeft"
-        android:contentDescription="my profile pic"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@mipmap/ic_launcher" />
+    android:orientation="horizontal">
 
-    <TextView
-        android:textSize="10sp"
-        android:id="@+id/tvDate"
-        android:padding="5dp"
-        android:layout_width="128dp"
-        android:layout_height="64dp">
-    </TextView>
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="3">
 
-    <TextView
-        android:textSize="14sp"
-        android:id="@+id/tvBody"
-        android:padding="10dp"
-        android:lines="5"
-        android:layout_marginRight="32dp"
-        android:layout_width="256dp"
-        android:layout_height="64dp">
-    </TextView>
+        <ImageView
+            android:id="@+id/ivProfileLeft"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="my profile pic"
+            android:src="@mipmap/ic_launcher" />
+
+    </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/ivProfileRight"
-        android:contentDescription="Other profile pic"
-        android:layout_marginLeft="-64dp"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@mipmap/ic_launcher" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_vertical"
+            android:lines="1"
+            android:padding="5dp"
+            android:textSize="10sp">
 
 
+        </TextView>
 
-    </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:padding="2dp"
+            android:textSize="12sp"></TextView>
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:padding="5dp"
+            android:textSize="10sp"></TextView>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="3">
+
+        <ImageView
+            android:id="@+id/ivProfileRight"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Other profile pic"
+            android:src="@mipmap/ic_launcher" />
+
+    </LinearLayout>
+
 </LinearLayout>
