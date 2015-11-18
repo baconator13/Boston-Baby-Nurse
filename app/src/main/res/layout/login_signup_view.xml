@@ -11,12 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/bbn_trans" />
+        android:paddingTop="60dp"
+        android:src="@drawable/bbn_logo_final" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_logo"
+        android:paddingTop="20dp"
         android:gravity="center_horizontal"
         android:textSize="16sp"
         android:textStyle="bold"

@@ -14,7 +14,6 @@
 
         <ListView
             android:id="@+id/articleList"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
@@ -36,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/md_white_1000"
-            android:padding="8dp" >
+            android:padding="8dp"
+            android:onClick="executeProfileClick">
 
             <ImageView
                 android:id="@+id/avatar"
@@ -44,7 +44,8 @@
                 android:layout_height="75dp"
                 android:paddingTop="20dp"
                 android:src="@drawable/bbn_logo"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:onClick="executeProfileClick"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -53,17 +54,19 @@
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@+id/avatar"
                 android:orientation="vertical"
-                android:background="@color/md_white_1000">
+                android:background="@color/md_white_1000"
+                android:onClick="executeProfileClick">
 
                 <TextView
                     android:id="@+id/mainTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:paddingTop="15dp"
-                    android:text="Boston Baby Nurse"
-                    android:textColor="@color/PrimaryTextColor"
+                    android:textColor="@color/md_black_1000"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="executeProfileClick"/>
 
 
             </LinearLayout>

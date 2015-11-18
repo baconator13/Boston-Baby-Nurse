@@ -11,15 +11,18 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
 
 
-/**
- * Created by alexanderarsenault on 8/24/15.
- */
+
+
+
 public class EducationActivity extends MainActivity {
+
+    private TextView profileUser;
 
 
     @Override
@@ -44,6 +47,11 @@ public class EducationActivity extends MainActivity {
                 startActivity(intent);
             }
         });
+
+        profileUser = (TextView) findViewById(R.id.mainTitle);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        profileUser.setText(currentUser.getString("name"));
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);

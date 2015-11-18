@@ -2,7 +2,6 @@ package org.example.android.bostonbabynurse;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -14,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -35,6 +35,7 @@ public class ForumActivity extends MainActivity {
     private EditText etMessageTitle;
     private EditText etMessageContent;
     private Button btSend;
+    private TextView profileUser;
 
     private ListView lvChat;
     private ArrayList<Message> mMessages;
@@ -42,7 +43,6 @@ public class ForumActivity extends MainActivity {
 
     // Keep track of initial load to scroll to the bottom of the ListView
     private boolean mFirstLoad;
-    private Handler handler = new Handler();
 
     private static final int MAX_CHAT_MESSAGES_TO_SHOW = 50;
 
@@ -74,6 +74,11 @@ public class ForumActivity extends MainActivity {
             }
         };
 
+        profileUser = (TextView) findViewById(R.id.mainTitle);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        profileUser.setText(currentUser.getString("name"));
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         // Drawer Item click listeners
@@ -88,18 +93,10 @@ public class ForumActivity extends MainActivity {
         Log.v("userId*****", sUserId.toString());
         setupMessagePosting();
 
-        handler.postDelayed(runnable, 100);
+        refreshMessages();
+
     }
 
-
-    // Defines a runnable which is run every 100ms
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            refreshMessages();
-            handler.postDelayed(this, 100);
-        }
-    };
 
     private void refreshMessages() {
         receiveMessage();
@@ -123,26 +120,35 @@ public class ForumActivity extends MainActivity {
         lvChat.setAdapter(mAdapter);
         btSend.setOnClickListener(new Button.OnClickListener() {
 
+
             @Override
             public void onClick(View v) {
                 String mMessage = etMessageTitle.getText().toString();
                 String mMessageContent = etMessageContent.getText().toString();
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                String username = currentUser.getString("username");
 
-                ParseObject message = ParseObject.create("Message");
-                message.put("username", "Created by: " + username);
-                message.put(USER_ID_KEY, sUserId);
-                message.put("title", mMessage);
-                message.put("content", mMessageContent);
-                message.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        Toast.makeText(ForumActivity.this, "Successfully created message on Parse",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-                etMessageTitle.setText("");
+                if (mMessage.isEmpty() || mMessageContent.isEmpty()) {
+                    Toast.makeText(ForumActivity.this, "Please enter both a title and message",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+                    String username = currentUser.getString("username");
+
+                    ParseObject message = ParseObject.create("Message");
+                    message.put("username", "Posted by: " + username);
+                    message.put(USER_ID_KEY, sUserId);
+                    message.put("title", mMessage);
+                    message.put("content", mMessageContent);
+                    message.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            Toast.makeText(ForumActivity.this, "Successfully created message on Parse",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    etMessageTitle.setText("");
+                }
+                refreshMessages();
             }
         });
 

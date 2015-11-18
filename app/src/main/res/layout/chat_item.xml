@@ -7,21 +7,6 @@
     <LinearLayout
         android:layout_width="0dip"
         android:layout_height="wrap_content"
-        android:layout_weight="3">
-
-        <ImageView
-            android:id="@+id/ivProfileLeft"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:contentDescription="my profile pic"
-            android:src="@mipmap/ic_launcher" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
         android:layout_weight="3"
         android:orientation="vertical">
 
@@ -29,15 +14,13 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill_vertical"
+            android:layout_gravity="center_vertical"
             android:lines="1"
-            android:padding="5dp"
-            android:textSize="10sp">
-
-
+            android:padding="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:textSize="12sp">
         </TextView>
-
-
     </LinearLayout>
 
 
@@ -53,7 +36,10 @@
             android:layout_height="wrap_content"
             android:lines="1"
             android:padding="2dp"
-            android:textSize="12sp"></TextView>
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold">
+        </TextView>
 
         <TextView
             android:id="@+id/tvUsername"
@@ -63,21 +49,6 @@
             android:padding="5dp"
             android:textSize="10sp"></TextView>
 
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="3">
-
-        <ImageView
-            android:id="@+id/ivProfileRight"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:contentDescription="Other profile pic"
-            android:src="@mipmap/ic_launcher" />
 
     </LinearLayout>
 

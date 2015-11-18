@@ -141,6 +141,15 @@
                 android:value="org.example.android.bostonbabynurse.MainActivity" />
         </activity>
 
+        <!--Profile Activity-->
+        <activity
+            android:name="org.example.android.bostonbabynurse.ProfileActivity"
+            android:label="Profile Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.example.android.bostonbabynurse.MainActivity" />
+        </activity>
+
 
     </application>
 

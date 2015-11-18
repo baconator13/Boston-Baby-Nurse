@@ -3,6 +3,7 @@ package org.example.android.bostonbabynurse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -10,9 +11,7 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
-/**
- * Created by alexanderarsenault on 10/28/15.
- */
+
 public class ReplyActivity extends AppCompatActivity {
 
     private TextView tvMessageTitle;
@@ -29,6 +28,10 @@ public class ReplyActivity extends AppCompatActivity {
 
         String msgTitle = b.getString("title");
         String msgContent = b.getString("reply");
+
+
+        Log.v("msgTitle****", msgTitle);
+        Log.v("msgContent****", msgContent);
 
         tvMessageContent = (TextView) findViewById(R.id.tvMessageContent);
         tvMessageTitle = (TextView) findViewById(R.id.tvMessageTitle);

@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private String xmlData;
     private static String TAG = MainActivity.class.getSimpleName();
 
+    protected TextView profileUser;
+
     protected ListView listViewArticles;
     protected ListView mDrawerList;
     protected RelativeLayout mDrawerPane;
@@ -65,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 
         // Populate the navigation drawer with options
+        profileUser = (TextView) findViewById(R.id.mainTitle);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        profileUser.setText(currentUser.getString("name"));
+
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
         mDrawerList = (ListView) findViewById(R.id.navList);
         DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
@@ -229,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
 
             title.setText(allArticles.get(position).getTitle());
             pubDate.setText((allArticles.get(position).getPubDate()).substring(0, 16));
-            description.setText((allArticles.get(position).getDescription()).substring(0, 100) + "...");
+            description.setText((allArticles.get(position).getDescription()).substring(0, 200) + "...");
 
             return view;
         }
@@ -324,7 +331,7 @@ public class MainActivity extends AppCompatActivity {
         private String downloadXML(String theUrl) throws IOException {
 
 
-            int BUFFER_SIZE = 2000;
+            int BUFFER_SIZE = 200000;
             InputStream is = null;
 
 
@@ -367,11 +374,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static void longInfo(String str) {
-        if(str.length() > 4000) {
-            Log.d("onPostExecute: ", str.substring(0, 4000));
-            longInfo(str.substring(4000));
-        } else
-            Log.d("onPostExecute: ", str);
+//    public static void longInfo(String str) {
+//        if(str.length() > 4000) {
+//            Log.d("onPostExecute: ", str.substring(0, 4000));
+//            longInfo(str.substring(4000));
+//        } else
+//            Log.d("onPostExecute: ", str);
+//    }
+
+    public void executeProfileClick(View view){
+        Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        startActivity(intent);
     }
 }

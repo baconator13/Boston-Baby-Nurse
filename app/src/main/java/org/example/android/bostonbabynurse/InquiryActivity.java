@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
@@ -27,6 +28,8 @@ public class InquiryActivity extends MainActivity {
     private EditText mEmail;
     private EditText mMessage;
 
+    private TextView profileUser;
+
     private String firstName, lastName, Email, Message;
 
     @Override
@@ -34,6 +37,11 @@ public class InquiryActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inquiry_view);
         setTitle("Reach Out");
+
+        profileUser = (TextView) findViewById(R.id.mainTitle);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        profileUser.setText(currentUser.getString("name"));
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);

@@ -2,11 +2,25 @@
 <items version="2" >
 
     <item
+        jar="/Users/alexanderarsenault/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.3.0/bc535105332645408ef5f1380215cc954b842178/bolts-applinks-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="bc535105332645408ef5f1380215cc954b842178">
+        <dex dex="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.3.0-94a982ff78e799ce800f9d22d9582d19508f663a.jar" />
+    </item>
+    <item
         jar="/Users/alexanderarsenault/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
         <dex dex="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-352d2b38418e1ab6813ae0b898e53b94a96c86ad.jar" />
+    </item>
+    <item
+        jar="/Users/alexanderarsenault/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.3.0/8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c/bolts-tasks-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
+        <dex dex="/Users/alexanderarsenault/Desktop/Github Boston Baby Nurse/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.3.0-c1a81603a166ca38c4c94ebb67a7b9fbd8265a5f.jar" />
     </item>
 
 </items>

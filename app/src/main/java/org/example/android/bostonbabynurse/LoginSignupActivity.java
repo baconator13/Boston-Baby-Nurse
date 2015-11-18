@@ -43,9 +43,8 @@ public class LoginSignupActivity extends Activity {
         TextView forgotPassword = (TextView) findViewById(R.id.forgotpassword);
         password.setTransformationMethod(new PasswordTransformationMethod());
 
-        // Locate Buttons in main.xml
+        // Locate Buttons in LoginSignupActivity.xml
         loginbutton = (Button) findViewById(R.id.login);
-        //signup = (Button) findViewById(R.id.signup);
 
         // Login Button Click Listener
         loginbutton.setOnClickListener(new View.OnClickListener() {
@@ -93,18 +92,7 @@ public class LoginSignupActivity extends Activity {
         });
 
 
-        // Sign up Button Click Listener
-//        signup.setOnClickListener(new View.OnClickListener() {
-//
-//            public void onClick(View arg0) {
-//                Intent intent = new Intent(LoginSignupActivity.this, SignupForm.class);
-//                startActivity(intent);
-//
-//            }
-//        });
-
     }
-
 
 
 }
