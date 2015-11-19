@@ -62,11 +62,11 @@ public class LoginSignupActivity extends Activity {
                                     // If user exist and authenticated, send user to ChatActivity.class
                                     Intent intent = new Intent(LoginSignupActivity.this, MainActivity.class);
                                     startActivity(intent);
-                                    Toast.makeText(getApplicationContext(), "Successfully Logged in", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "Successfully logged in!", Toast.LENGTH_SHORT).show();
                                     finish();
                                 } else {
                                     Toast.makeText(
-                                            getApplicationContext(), "Incorrect username or password", Toast.LENGTH_LONG).show();
+                                            getApplicationContext(), "Incorrect username or password.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

@@ -3,7 +3,6 @@ package org.example.android.bostonbabynurse;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -26,18 +25,18 @@ public class ReplyActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
-        String msgTitle = b.getString("title");
+        //String msgTitle = b.getString("title");
         String msgContent = b.getString("reply");
 
 
-        Log.v("msgTitle****", msgTitle);
-        Log.v("msgContent****", msgContent);
+        //Log.v("msgTitle****", msgTitle);
+        //Log.v("msgContent****", msgContent);
 
         tvMessageContent = (TextView) findViewById(R.id.tvMessageContent);
         tvMessageTitle = (TextView) findViewById(R.id.tvMessageTitle);
 
 
-        tvMessageTitle.setText(msgTitle);
+        //tvMessageTitle.setText(msgTitle);
         tvMessageContent.setText(msgContent);
 
 
@@ -85,7 +84,7 @@ public class ReplyActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ForumActivity.class);
+        Intent intent = new Intent(this, MessageContentActivity.class);
         startActivity(intent);
     }
 }

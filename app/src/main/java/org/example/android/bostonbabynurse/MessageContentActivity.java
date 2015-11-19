@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -54,8 +55,9 @@ public class MessageContentActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
 
-        String msgTitle = b.getString("reply");
-        String msgContent = b.getString("reply");
+        String msgTitle = b.getString("title");
+        String msgContent = b.getString("content");
+        String msgReply = b.getString("reply");
 
         setTitle(msgTitle);
 
@@ -70,7 +72,9 @@ public class MessageContentActivity extends AppCompatActivity {
 
         setupMessagePosting();
 
-        handler.postDelayed(runnable, 100);
+        refreshMessages();
+
+        //handler.postDelayed(runnable, 100);
     }
 
     // Defines a runnable which is run every 100ms
@@ -123,16 +127,20 @@ public class MessageContentActivity extends AppCompatActivity {
                         Toast.makeText(MessageContentActivity.this, "Successfully created a reply on Parse", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+                refreshMessages();
             }
+
         });
 
         // Set on click listeners for the article items
-//        lvReplyChat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                selectMessage(position);
-//            }
-//        });
+        lvReplyChat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectMessage(position);
+            }
+
+        });
     }
 
 

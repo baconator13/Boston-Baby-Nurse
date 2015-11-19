@@ -19,14 +19,12 @@ public class ProfileActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_activity_view);
-        setTitle("");
+        setTitle("Profile");
 
         welcomeText = (TextView) findViewById(R.id.welcomeText);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         welcomeText.setText("Welcome " + currentUser.getString("name") + "!");
-
-
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

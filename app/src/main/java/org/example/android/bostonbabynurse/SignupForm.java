@@ -14,12 +14,17 @@ import com.parse.SignUpCallback;
 
 
 public class SignupForm extends AppCompatActivity {
+
     // Declare Variables
     Button signup;
     String usernametxt;
     String passwordtxt;
+    String nametxt;
+    String emailtxt;
     EditText password;
     EditText username;
+    EditText etName;
+    EditText etEmail;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,8 @@ public class SignupForm extends AppCompatActivity {
 
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        etName = (EditText) findViewById(R.id.name);
+        etEmail = (EditText) findViewById(R.id.email);
         signup = (Button) findViewById(R.id.submit);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -38,25 +45,29 @@ public class SignupForm extends AppCompatActivity {
                 // Retrieve the text entered from the EditText
                 usernametxt = username.getText().toString();
                 passwordtxt = password.getText().toString();
+                emailtxt = etEmail.getText().toString();
+                nametxt = etName.getText().toString();
 
                 // Force user to fill up the form
                 if (usernametxt.equals("") && passwordtxt.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Please complete the sign up form", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please complete the sign up form", Toast.LENGTH_SHORT).show();
 
                 } else {
                     // Save new user data into Parse.com Data Storage
                     ParseUser user = new ParseUser();
                     user.setUsername(usernametxt);
                     user.setPassword(passwordtxt);
+                    user.setEmail(emailtxt);
+                    user.put("name", nametxt);
                     user.signUpInBackground(new SignUpCallback() {
                         public void done(ParseException e) {
                             if (e == null) {
                                 // Show a simple Toast message upon successful registration
-                                Toast.makeText(getApplicationContext(), "Successfully Signed Up", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Successfully signed up!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignupForm.this, MainActivity.class);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(getApplicationContext(), "Sign up Error", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Sign up Error", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
